@@ -1,0 +1,178 @@
+import 'package:flutter/material.dart';
+import 'package:my_foodapp/ViewModels/CartViewModel.dart';
+import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
+import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
+import 'package:my_foodapp/Views/cancel_order.dart';
+import 'package:provider/provider.dart';
+
+class TrackOrder extends StatefulWidget {
+  const TrackOrder({super.key});
+
+  @override
+  State<TrackOrder> createState() => _TrackOrderState();
+}
+
+class _TrackOrderState extends State<TrackOrder> {
+  @override
+  Widget build(BuildContext context) {
+    final vm = context.watch<CartViewModel>();
+    final vm1 = context.watch<MyAccountViewModel>();
+    final vm2 = context.watch<HomeViewModel>();
+    return Scaffold(
+      appBar: AppBar(
+        actions: [Icon(Icons.more_vert_outlined)],
+        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
+        title: RichText(
+          text: TextSpan(
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            children: [
+              TextSpan(
+                text: 'Track Order:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+              ),
+
+              TextSpan(
+                text: '#120340',
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+              ),
+            ],
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: EdgeInsetsGeometry.all(20),
+        child: SafeArea(
+          bottom: true,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Image.asset('assets/images/Avtar.png'),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      Text(
+                        vm1.userNameController.text,
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                      ),
+                      Text('Delivery guy'),
+                    ],
+                  ),
+                  Spacer(),
+                  Image.asset('assets/images/Action Icon.png'),
+                  SizedBox(width: 5),
+                  Image.asset('assets/images/Action Icon (1).png'),
+                ],
+              ),
+
+              SizedBox(height: 10),
+              Divider(height: 10),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Icon(Icons.watch_later_outlined),
+                  SizedBox(width: 5),
+                  Text('Estimated Time'),
+                  Spacer(),
+                  Text(
+                    vm.getMyOrderResponseModel.data?.orders?.first.estimatedTime?.toString() ?? '',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+
+              Container(
+                padding: EdgeInsets.all(20),
+                width: 352,
+                height: 214,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [Image.asset('assets/images/greenlocation.png'), SizedBox(width: 10), Text('Order Prepared')],
+                    ),
+                    SizedBox(height: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [Image.asset('assets/images/greenlocation.png'), SizedBox(width: 10), Text('Your Order is on the way')]),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Image.asset('assets/images/greenlocation.png'),
+                            SizedBox(width: 10),
+                            Text(
+                              'Your Order has been Delivered',
+                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(54, 58, 51, 1)),
+                            ),
+                          ],
+                        ),
+                        Center(
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => CancelOrder()));
+                            },
+                            style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),
+                            child: Text(
+                              'Rate the Food!',
+                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Color.fromRGBO(54, 58, 51, 1)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Image.asset('assets/images/location2.png'),
+                  SizedBox(width: 3),
+                  Text('Deliver To', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+                  Spacer(),
+                  Text(vm2.getAddressResponseModel.data!.addressLine!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Image.asset('assets/images/Credit Card.png'),
+                  SizedBox(width: 3),
+                  Text('Amount Paid'),
+                  Spacer(),
+                  Text(
+                    vm.getAllCartResponseModel.data?.totalAmount?.toString() ?? '0.0',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
+              Text('Food to be delivered'),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Image.asset('assets/images/burger2.png'),
+                  SizedBox(width: 10),
+                  Image.asset('assets/images/Frame.png'),
+                  SizedBox(width: 10),
+                  Image.asset('assets/images/coke.png'),
+                  SizedBox(width: 10),
+                  Image.asset('assets/images/pizza1.png'),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
