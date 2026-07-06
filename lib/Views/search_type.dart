@@ -48,7 +48,7 @@ class _SearchTypeState extends State<SearchType> {
                   child: Center(
                     child: Text(
                       "U",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                     ),
                   ),
                 ),
@@ -175,14 +175,14 @@ class _SearchTypeState extends State<SearchType> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(menu.name!, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                      Text(menu.name!, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
                                       SizedBox(width: 5),
                                       Row(
                                         children: [
                                           Icon(Icons.star, color: Color.fromRGBO(84, 163, 18, 1)),
                                           RichText(
                                             text: TextSpan(
-                                              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: AppColors.darkCharcoal),
+                                              style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                                               children: [
                                                 TextSpan(text: menu.rating!.toString()),
                                                 TextSpan(text: ' 20 - 25 Min | '),

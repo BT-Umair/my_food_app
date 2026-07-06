@@ -65,7 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Center(
                     child: Text(
                       "U",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                     ),
                   ),
                 ),
@@ -249,7 +249,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                             child: Text(
                               'See All',
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.darkCharcoal),
+                              style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                             ),
                           ),
                           SizedBox(width: 5),
@@ -314,7 +314,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         children: [
                                           Text(
                                             '₹${menu.price}',
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                           ),
                                           Spacer(),
                                           OutlinedButton(
@@ -349,7 +349,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           Spacer(),
                           Text(
                             'See All',
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.darkCharcoal),
+                            style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                           ),
                           SizedBox(width: 5),
 
@@ -414,7 +414,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                               Icon(Icons.star, color: Color.fromRGBO(94, 173, 29, 1)),
                                               Text(
                                                 restaurant.rating!.toString(),
-                                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                                                style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                               ),
                                             ],
                                           ),

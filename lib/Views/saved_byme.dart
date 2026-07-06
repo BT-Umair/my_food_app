@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 
 class SavedByme extends StatefulWidget {
   const SavedByme({super.key});
@@ -16,7 +17,7 @@ class _SavedBymeState extends State<SavedByme> {
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'Saved By Me',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
         ),
         centerTitle: true,
         actions: [
@@ -33,7 +34,7 @@ class _SavedBymeState extends State<SavedByme> {
               child: Center(
                 child: Text(
                   "U",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 255, 255, 1)),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
                 ),
               ),
             ),
@@ -93,7 +94,7 @@ class _SavedBymeState extends State<SavedByme> {
                                 left: 50,
                                 child: Text(
                                   "Pure Veg Food",
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 255, 255, 1)),
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
                                 ),
                               ),
                               // Container(
@@ -128,7 +129,7 @@ class _SavedBymeState extends State<SavedByme> {
                                 Expanded(
                                   child: Text(
                                     'Punjabi Food Junction',
-                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
                                   ),
                                 ),
 
@@ -161,7 +162,7 @@ class _SavedBymeState extends State<SavedByme> {
                               children: [
                                 RichText(
                                   text: TextSpan(
-                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                                    style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                                     children: [
                                       TextSpan(text: ' Burger -'),
                                       TextSpan(text: ' Chicken -'),
@@ -190,21 +191,21 @@ class _SavedBymeState extends State<SavedByme> {
                                 SizedBox(width: 5),
                                 Text(
                                   '4.7',
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(0, 0, 0, 1)),
+                                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.primaryBlack),
                                 ),
                                 SizedBox(width: 10),
                                 Image.asset('assets/images/Delivery.png'),
                                 SizedBox(width: 8),
                                 Text(
                                   'Free',
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(0, 0, 0, 1)),
+                                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.primaryBlack),
                                 ),
                                 SizedBox(width: 10),
                                 Image.asset('assets/images/Clock.png'),
                                 SizedBox(width: 8),
                                 Text(
                                   '20 min',
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(0, 0, 0, 1)),
+                                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.primaryBlack),
                                 ),
                               ],
                             ),

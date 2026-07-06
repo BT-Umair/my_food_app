@@ -90,21 +90,21 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                 SizedBox(width: 5),
                                 Text(
                                   widget.restrat ?? "0.0",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(24, 28, 46, 1)),
+                                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(24, 28, 46, 1)),
                                 ),
                                 SizedBox(width: 12),
                                 Image.asset('assets/images/Delivery.png'),
                                 SizedBox(width: 5),
                                 Text(
                                   'Free',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(24, 28, 46, 1)),
+                                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(24, 28, 46, 1)),
                                 ),
                                 SizedBox(width: 12),
                                 Image.asset('assets/images/Clock.png'),
                                 SizedBox(width: 5),
                                 Text(
                                   "20 min",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(24, 28, 46, 1)),
+                                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(24, 28, 46, 1)),
                                 ),
                                 SizedBox(width: 12),
                               ],
@@ -237,7 +237,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                   children: [
                                     Text(
                                       menu.price!.toString(),
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.darkCharcoal),
+                                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                                     ),
                                     Spacer(),
                                     OutlinedButton(
@@ -254,7 +254,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                         },
                                         child: Text(
                                           "ADD",
-                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(84, 163, 18, 1)),
+                                          style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(84, 163, 18, 1)),
                                         ),
                                       ),
                                     ),

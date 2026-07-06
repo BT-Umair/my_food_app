@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
@@ -24,16 +25,16 @@ class _TrackOrderState extends State<TrackOrder> {
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: RichText(
           text: TextSpan(
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, fontWeight: AppFontWeights.bold),
             children: [
               TextSpan(
                 text: 'Track Order:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
               ),
 
               TextSpan(
                 text: '#120340',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
               ),
             ],
           ),
@@ -55,7 +56,7 @@ class _TrackOrderState extends State<TrackOrder> {
                     children: [
                       Text(
                         vm1.userNameController.text,
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                        style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                       ),
                       Text('Delivery guy'),
                     ],
@@ -78,7 +79,7 @@ class _TrackOrderState extends State<TrackOrder> {
                   Spacer(),
                   Text(
                     vm.getMyOrderResponseModel.data?.orders?.first.estimatedTime?.toString() ?? '',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                    style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                   ),
                 ],
               ),
@@ -123,7 +124,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),
                             child: Text(
                               'Rate the Food!',
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Color.fromRGBO(54, 58, 51, 1)),
+                              style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold, color: Color.fromRGBO(54, 58, 51, 1)),
                             ),
                           ),
                         ),
@@ -137,7 +138,7 @@ class _TrackOrderState extends State<TrackOrder> {
                 children: [
                   Image.asset('assets/images/location2.png'),
                   SizedBox(width: 3),
-                  Text('Deliver To', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+                  Text('Deliver To', style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular)),
                   Spacer(),
                   Text(vm2.getAddressResponseModel.data!.addressLine!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 ],
