@@ -18,6 +18,7 @@ import 'package:my_foodapp/ViewModels/SplashScreenViewModel.dart';
 import 'package:my_foodapp/ViewModels/ThemeProviderViewModel.dart';
 import 'package:my_foodapp/Views/splash_screen.dart';
 import 'package:my_foodapp/firebase_options.dart';
+import 'package:my_foodapp/notification_handler.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -30,6 +31,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
     // Yeh is code ka sabse bada dimaag hai. Agar aap app ko Android par chalayenge, toh yeh Android ki settings load karega. Agar iOS par chalayenge, toh iOS ki settings load karega. Aapko alag-alag code likhne ki zaroorat nahi padti.
   );
+  // Notification settings active karein
+  NotificationHandler _handler = NotificationHandler();
+  await _handler.initializeSettings();
   runApp(
     MultiProvider(
       providers: [

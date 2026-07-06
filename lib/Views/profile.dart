@@ -28,9 +28,6 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final vm = Provider.of<ProfileViewModel>(context);
 
-    var _themeMode;
-    GestureTapCallback? _takePhotoAndUpload;
-    var _imageFile;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
