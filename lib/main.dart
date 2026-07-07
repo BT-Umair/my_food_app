@@ -32,8 +32,8 @@ void main() async {
     // Yeh is code ka sabse bada dimaag hai. Agar aap app ko Android par chalayenge, toh yeh Android ki settings load karega. Agar iOS par chalayenge, toh iOS ki settings load karega. Aapko alag-alag code likhne ki zaroorat nahi padti.
   );
   // Notification settings active karein
-  NotificationHandler _handler = NotificationHandler();
-  await _handler.initializeSettings();
+  NotificationHandler handler = NotificationHandler();
+  await handler.initializeSettings();
   runApp(
     MultiProvider(
       providers: [

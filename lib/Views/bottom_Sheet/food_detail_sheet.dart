@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/constants.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/bottom_Sheet/Customize_Sheet.dart';
 import 'package:provider/provider.dart';
@@ -98,7 +99,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
 
                       Text(
                         firstItem.about!,
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(85, 85, 85, 1)),
+                        style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                       ),
                     ],
                   ),

@@ -16,9 +16,8 @@ class NotificationHandler {
 
     // 2. Apne device ka unique FCM Token nikalyein
     String? token = await _messaging.getToken();
-    print("================== YOUR FCM TOKEN ==================");
+    print("YOUR FCM TOKEN ");
     print(token);
-    print("====================================================");
 
     // 3. Jab app screen par KHULI HUI HO (Foreground), tab notification listen karein
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {

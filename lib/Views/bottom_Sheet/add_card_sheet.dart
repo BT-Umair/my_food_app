@@ -123,13 +123,13 @@ class _AddCardSheet extends State<AddCardSheet> {
                           SizedBox(height: 8),
                           Text(
                             'NAME ON CARD',
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                            style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                           ),
                           SizedBox(height: 8),
                           TextFormField(
                             controller: cardNameController,
                             decoration: InputDecoration(
-                              suffixStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(70, 137, 13, 1)),
+                              suffixStyle: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(70, 137, 13, 1)),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               hintText: 'Enter card name',
                               errorText: cardNameError,
@@ -138,7 +138,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                           SizedBox(height: 8),
                           Text(
                             'CARD NUMBER',
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                            style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                           ),
                           SizedBox(height: 8),
                           TextFormField(
@@ -150,7 +150,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                                 padding: EdgeInsets.all(5.0),
                                 child: Image.asset('assets/images/image 1.png', width: 140, height: 27),
                               ),
-                              suffixStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.primaryGreen),
+                              suffixStyle: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.primaryGreen),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               hintText: 'Enter card number',
                               errorText: cardNoError,
@@ -163,7 +163,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                                   padding: EdgeInsets.only(left: 16.0),
                                   child: Text(
                                     'EXPIRE DATE',
-                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                                    style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                   ),
                                 ),
                               ),
@@ -172,7 +172,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                                   padding: EdgeInsets.only(left: 16.0),
                                   child: Text(
                                     'SECURITY CODE',
-                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                                    style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                   ),
                                 ),
                               ),
@@ -251,7 +251,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                                 ),
                                 child: Text(
                                   "Save and Continue",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.primaryWhite),
+                                  style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: 16, color: AppColors.primaryWhite),
                                 ),
                               ),
                             ),

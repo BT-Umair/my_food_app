@@ -84,7 +84,7 @@ class _AddUpiSheet extends State<AddUpiSheet> {
                       controller: upiController,
                       decoration: InputDecoration(
                         suffixText: 'Verify',
-                        suffixStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(70, 137, 13, 1)),
+                        suffixStyle: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(70, 137, 13, 1)),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         hintText: 'Enter your UPI Id',
                         errorText: upiError,
@@ -98,7 +98,7 @@ class _AddUpiSheet extends State<AddUpiSheet> {
                         SizedBox(width: 10),
                         Text(
                           'example1234@icici',
-                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color.fromRGBO(70, 137, 13, 1)),
+                          style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(70, 137, 13, 1)),
                         ),
                       ],
                     ),
@@ -119,7 +119,7 @@ class _AddUpiSheet extends State<AddUpiSheet> {
                           ),
                           child: Text(
                             "Save and Continue",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.primaryWhite),
+                            style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: 16, color: AppColors.primaryWhite),
                           ),
                         ),
                       ),
