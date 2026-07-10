@@ -51,7 +51,7 @@ class _AddressState extends State<Address> {
               child: Center(
                 child: Text(
                   "U",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                  style: TextStyle(fontSize: AppFontSize.medium, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
                 ),
               ),
             ),
@@ -293,7 +293,7 @@ class _AddressState extends State<Address> {
                         style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                         child: Text(
                           'Add New Address',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: AppFontSize.medium, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                       ),
                     ),

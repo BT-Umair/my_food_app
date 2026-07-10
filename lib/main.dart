@@ -29,7 +29,9 @@ void main() async {
   await Firebase.initializeApp(
     // Yeh main line hai jo aapke Flutter app ka hath Firebase backend se jodti hai.
     options: DefaultFirebaseOptions.currentPlatform,
-    // Yeh is code ka sabse bada dimaag hai. Agar aap app ko Android par chalayenge, toh yeh Android ki settings load karega. Agar iOS par chalayenge, toh iOS ki settings load karega. Aapko alag-alag code likhne ki zaroorat nahi padti.
+    // Yeh is code ka sabse bada dimaag hai. Agar aap app ko Android par chalayenge,
+    // toh yeh Android ki settings load karega. Agar iOS par chalayenge, toh iOS ki settings load karega.
+    // Aapko alag-alag code likhne ki zaroorat nahi padti.
   );
   // Notification settings active karein
   NotificationHandler handler = NotificationHandler();

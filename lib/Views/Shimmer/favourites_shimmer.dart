@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget favouriteShimmer() {
@@ -21,7 +22,7 @@ Widget favouriteShimmer() {
                   width: 169,
                   height: 220,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color.fromRGBO(255, 255, 255, 1)),
+                    border: Border.all(color: AppColors.primaryWhite),
                     borderRadius: BorderRadius.circular(10),
                   ),
 
@@ -46,13 +47,13 @@ Widget favouriteShimmer() {
                       ),
                       Text(
                         'South Indian Thali',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(0, 0, 0, 1)),
+                        style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                       ),
                       Row(
                         children: [
                           Text(
                             '₹99',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                           ),
                           Spacer(),
                           OutlinedButton(
@@ -60,7 +61,7 @@ Widget favouriteShimmer() {
                             style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8))),
                             child: Text(
                               'ADD',
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(84, 163, 18, 1)),
+                              style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(84, 163, 18, 1)),
                             ),
                           ),
                         ],

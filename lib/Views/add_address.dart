@@ -39,7 +39,7 @@ class AddAddress extends StatelessWidget {
               child: Center(
                 child: Text(
                   "U",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                  style: TextStyle(fontSize: AppFontSize.medium, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
                 ),
               ),
             ),
@@ -141,7 +141,7 @@ class AddAddress extends StatelessWidget {
 
                   child: Text(
                     'Save',
-                    style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.primaryWhite),
+                    style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.medium, color: AppColors.primaryWhite),
                   ),
                 ),
               ),

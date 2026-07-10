@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding: EdgeInsets.all(5.0),
                                   child: Text(
                                     vm.firstLetter!,
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                                    style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                                   ),
                                 ),
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/Views/restaurant_detail.dart';
 import 'package:my_foodapp/Views/search_type.dart';
 import 'package:shimmer/shimmer.dart';
@@ -51,14 +52,14 @@ Widget Shimmersearch() {
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color.fromRGBO(221, 221, 221, 1), width: 2.0),
+                        border: Border.all(color: AppColors.silverBorder, width: 2.0),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(height: 3),
-                          Text('', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                          Text('', style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold)),
                           SizedBox(height: 5),
                           // Image.asset('assets/images/Group 34064.png'),
                         ],
@@ -83,7 +84,7 @@ Widget Shimmersearch() {
                           decoration: BoxDecoration(
                             border: Border.all(color: Color.fromRGBO(197, 197, 197, 1), width: 1.0),
                             borderRadius: BorderRadius.circular(15),
-                            color: Colors.white,
+                            color: AppColors.primaryWhite,
                           ),
 
                           child: Padding(
@@ -102,13 +103,13 @@ Widget Shimmersearch() {
               children: [
                 Text(
                   '',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                 ),
                 SizedBox(width: 20),
                 Spacer(),
                 Text(
                   '',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(width: 5),
                 Image.asset('assets/images/Vector 1.png'),
@@ -137,7 +138,7 @@ Widget Shimmersearch() {
                           width: 40,
                           child: Text(
                             '',
-                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                            style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -156,12 +157,12 @@ Widget Shimmersearch() {
                 Text(
                   '',
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                 ),
                 Spacer(),
                 Text(
                   '',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(width: 5),
                 Image.asset('assets/images/Vector 1.png'),
@@ -207,14 +208,14 @@ Widget Shimmersearch() {
                               Image.asset('assets/images/Frame 2.png'),
                               Spacer(),
                               Icon(Icons.star, color: Color.fromRGBO(94, 173, 29, 1)),
-                              Text('5.0 (12)', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                              Text('5.0 (12)', style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.regular)),
                             ],
                           ),
                           Row(
                             children: [
                               Text(
                                 'Crispy Burger',
-                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                                style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: Color.fromRGBO(0, 0, 0, 1)),
                               ),
                             ],
                           ),
@@ -222,7 +223,7 @@ Widget Shimmersearch() {
                             children: [
                               Text(
                                 '₹99',
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                                style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                               ),
                               Spacer(),
                               OutlinedButton(
@@ -234,7 +235,7 @@ Widget Shimmersearch() {
 
                                 child: Text(
                                   "ADD",
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color.fromRGBO(84, 163, 18, 1)),
+                                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: Color.fromRGBO(84, 163, 18, 1)),
                                 ),
                               ),
                             ],
@@ -252,12 +253,12 @@ Widget Shimmersearch() {
               children: [
                 Text(
                   'Near Restaurants',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                 ),
                 Spacer(),
                 Text(
                   'See All',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(width: 5),
 
@@ -305,14 +306,14 @@ Widget Shimmersearch() {
                               Text(
                                 'Punjabi Food Junction',
                                 textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color.fromRGBO(0, 0, 0, 1)),
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
                               ),
                               Row(
                                 children: [
                                   Icon(Icons.star, color: Color.fromRGBO(94, 173, 29, 1)),
                                   Text(
                                     '5.0 (12)',
-                                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Color.fromRGBO(85, 85, 85, 1)),
+                                    style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                   ),
                                 ],
                               ),

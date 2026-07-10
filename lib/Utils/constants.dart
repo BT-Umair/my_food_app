@@ -5,6 +5,7 @@ class Const {
   static final NAME = "name";
   static final EMAIL = "email";
 
+  // API URL.
   static final BASE_URL = "http://192.168.0.170:8000/api/";
   static final IMAGE_URL = "http://192.168.0.170:8000/images/restaurant/";
   static final MENUIMAGE_URL = "http://192.168.0.170:8000/images/menu/";

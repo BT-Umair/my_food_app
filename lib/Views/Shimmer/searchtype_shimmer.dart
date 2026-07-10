@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget Shimmersearchtype() {
@@ -19,24 +20,24 @@ Widget Shimmersearchtype() {
               Container(
                 width: 50,
                 height: 50,
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(color: AppColors.primaryWhite, borderRadius: BorderRadius.circular(8)),
               ),
               SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(width: 120, height: 15, color: Colors.white),
+                    Container(width: 120, height: 15, color: AppColors.primaryWhite),
                     SizedBox(height: 8),
                     Row(
                       children: [
                         Container(
                           width: 15,
                           height: 15,
-                          decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                          decoration: BoxDecoration(color: AppColors.primaryWhite, shape: BoxShape.circle),
                         ),
                         SizedBox(width: 5),
-                        Container(width: 180, height: 12, color: Colors.white),
+                        Container(width: 180, height: 12, color: AppColors.primaryWhite),
                       ],
                     ),
                   ],

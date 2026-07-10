@@ -15,6 +15,12 @@ class AppFontWeights {
   static const FontWeight bold = FontWeight.w700;
 }
 
+class AppFontSize {
+  static const double small = 12.0;
+  static const double medium = 16.0;
+  static const double large = 24.0;
+}
+
 class AppImages {
   static const String _basePath = "assets/images/";
   static const String avatars = "${_basePath}app_Avatars.png";
