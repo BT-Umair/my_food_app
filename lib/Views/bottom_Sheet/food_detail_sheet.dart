@@ -43,7 +43,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(firstItem!.name!, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                            child: Text(firstItem!.name!, style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.large)),
                           ),
                           InkWell(
                             onTap: () {
@@ -63,7 +63,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
 
                               child: Text(
                                 "ADD",
-                                style: TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
+                                style: TextStyle(color: Colors.green, fontWeight: AppFontWeights.large),
                               ),
                             ),
                           ),
@@ -93,7 +93,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
 
                       SizedBox(height: 8),
 
-                      Text(firstItem.price!.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                      Text(firstItem.price!.toString(), style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large)),
 
                       SizedBox(height: 8),
 

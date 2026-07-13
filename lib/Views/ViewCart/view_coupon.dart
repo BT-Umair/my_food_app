@@ -58,7 +58,7 @@ class _ViewCouponBodyState extends State<_ViewCouponBody> {
               child: Center(
                 child: Text(
                   "Apply",
-                  style: TextStyle(color: Color.fromRGBO(94, 173, 29, 1), fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(color: Color.fromRGBO(94, 173, 29, 1), fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium),
                 ),
               ),
             ),
@@ -81,7 +81,7 @@ class _ViewCouponBodyState extends State<_ViewCouponBody> {
             const SizedBox(height: 10),
             const Text(
               "Select from these",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(112, 117, 107, 1)),
+              style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(112, 117, 107, 1)),
             ),
             const SizedBox(height: 10),
             Expanded(
@@ -112,12 +112,12 @@ class _ViewCouponBodyState extends State<_ViewCouponBody> {
                                     children: [
                                       Text(
                                         item.code ?? "NO CODE",
-                                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(96, 101, 92, 1)),
+                                        style: TextStyle(fontWeight: AppFontWeights.medium, color: Color.fromRGBO(96, 101, 92, 1)),
                                       ),
                                       SizedBox(height: 4),
                                       Text(
                                         item.description ?? "",
-                                        style: TextStyle(fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                                        style: TextStyle(fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                                       ),
                                     ],
                                   ),

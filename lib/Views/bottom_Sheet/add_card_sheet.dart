@@ -118,7 +118,7 @@ class _AddCardSheet extends State<AddCardSheet> {
                         children: [
                           Text(
                             'Add Your Credit/Debit Cards',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
+                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large, color: AppColors.primaryBlack),
                           ),
                           SizedBox(height: 8),
                           Text(
@@ -245,13 +245,13 @@ class _AddCardSheet extends State<AddCardSheet> {
                                   saveCard(context);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color.fromRGBO(84, 163, 18, 1),
-                                  foregroundColor: Color.fromRGBO(84, 163, 18, 1),
+                                  backgroundColor: AppColors.primaryGreen,
+                                  foregroundColor: AppColors.primaryGreen,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
                                 ),
                                 child: Text(
                                   "Save and Continue",
-                                  style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: 16, color: AppColors.primaryWhite),
+                                  style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                                 ),
                               ),
                             ),

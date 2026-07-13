@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/ViewCart/view_cart.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(menu.first.name!, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                      Text(menu.first.name!, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
                                       Text(menu.first.price!.toString()),
                                     ],
                                   ),
@@ -63,7 +64,7 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                                       Row(
                                         children: [
                                           Icon(Icons.star, color: Color.fromRGBO(84, 163, 18, 1)),
-                                          Text(menu.first.rating!.toString(), style: TextStyle(fontSize: 14, color: Color.fromRGBO(85, 85, 85, 1))),
+                                          Text(menu.first.rating!.toString(), style: TextStyle(fontSize: 14, color: AppColors.darkCharcoal)),
                                         ],
                                       ),
                                     ],

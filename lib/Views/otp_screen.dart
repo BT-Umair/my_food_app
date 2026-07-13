@@ -25,7 +25,7 @@ class OtpScreen extends StatelessWidget {
 
             SizedBox(height: 10),
 
-            Text('OTP Verification', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text('OTP Verification', style: TextStyle(fontSize: 22, fontWeight: AppFontWeights.bold)),
 
             SizedBox(height: 8),
 
@@ -34,7 +34,7 @@ class OtpScreen extends StatelessWidget {
               child: Text(
                 'We are Sending you an OTP to Verify Your Phone Number',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.darkCharcoal),
+                style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.darkCharcoal),
               ),
             ),
 
@@ -73,7 +73,7 @@ class OtpScreen extends StatelessWidget {
                 Padding(padding: EdgeInsets.only(left: 40)),
                 Text(
                   "Edit Phone Number ?",
-                  style: TextStyle(fontWeight: FontWeight.w500, color: AppColors.darkCharcoal, fontSize: 14),
+                  style: TextStyle(fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal, fontSize: 14),
                 ),
               ],
             ),
@@ -102,7 +102,7 @@ class OtpScreen extends StatelessWidget {
                       ? CircularProgressIndicator(color: Colors.white)
                       : Text(
                           'Verify Mobile',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                          style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                         ),
                 ),
               ),
@@ -120,7 +120,11 @@ class OtpScreen extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: 'Resend Code',
-                      style: TextStyle(color: Color.fromRGBO(70, 137, 13, 1), decoration: TextDecoration.underline, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        color: Color.fromRGBO(70, 137, 13, 1),
+                        decoration: TextDecoration.underline,
+                        fontWeight: AppFontWeights.medium,
+                      ),
                     ),
                   ],
                 ),

@@ -131,7 +131,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     SizedBox(height: 3),
-                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.large)),
                                     SizedBox(height: 5),
                                     Image.asset('assets/images/Group 34064.png'),
                                   ],
@@ -178,13 +178,13 @@ class _SearchScreenState extends State<SearchScreen> {
                         children: [
                           Text(
                             'What’s on your mind',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                           ),
                           SizedBox(width: 20),
                           Spacer(),
                           Text(
                             'See All',
-                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.darkCharcoal),
+                            style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                           ),
                           SizedBox(width: 5),
                           Image.asset('assets/images/Vector 1.png'),
@@ -221,7 +221,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     SizedBox(
                                       child: Text(
                                         Category.name!,
-                                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                                        style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -326,7 +326,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                                             child: Text(
                                               "ADD",
-                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color.fromRGBO(84, 163, 18, 1)),
+                                              style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.large, color: Color.fromRGBO(84, 163, 18, 1)),
                                             ),
                                           ),
                                         ],
@@ -407,7 +407,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                           Text(
                                             restaurant.name!,
                                             textAlign: TextAlign.start,
-                                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
+                                            style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.large, color: AppColors.primaryBlack),
                                           ),
                                           Row(
                                             children: [

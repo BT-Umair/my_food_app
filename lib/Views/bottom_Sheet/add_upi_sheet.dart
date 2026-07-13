@@ -76,7 +76,7 @@ class _AddUpiSheet extends State<AddUpiSheet> {
                   children: [
                     Text(
                       'Add Your UPI Id',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large, color: AppColors.primaryBlack),
                     ),
                     SizedBox(height: 10),
                     TextField(
@@ -113,13 +113,13 @@ class _AddUpiSheet extends State<AddUpiSheet> {
                             signIn(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(84, 163, 18, 1),
-                            foregroundColor: Colors.white,
+                            backgroundColor: AppColors.primaryGreen,
+                            foregroundColor: AppColors.primaryWhite,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                           child: Text(
                             "Save and Continue",
-                            style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: 16, color: AppColors.primaryWhite),
+                            style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                           ),
                         ),
                       ),

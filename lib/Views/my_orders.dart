@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/MyOrdersViewModel.dart';
 import 'package:my_foodapp/Views/Shimmer/myorders_shimmer.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class MyOrders extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context)),
 
-        title: Text('My Orders', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        title: Text('My Orders', style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold)),
 
         centerTitle: true,
       ),
@@ -48,7 +49,7 @@ class MyOrders extends StatelessWidget {
                             'Current',
                             textAlign: TextAlign.center,
 
-                            style: TextStyle(fontWeight: FontWeight.w600, color: vm.selectedTab == 0 ? Colors.white : Colors.black),
+                            style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 0 ? Colors.white : Colors.black),
                           ),
                         ),
                       ),
@@ -69,7 +70,7 @@ class MyOrders extends StatelessWidget {
                             'Previous',
                             textAlign: TextAlign.center,
 
-                            style: TextStyle(fontWeight: FontWeight.w600, color: vm.selectedTab == 1 ? Colors.white : Colors.black),
+                            style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 1 ? Colors.white : Colors.black),
                           ),
                         ),
                       ),
@@ -113,13 +114,13 @@ class MyOrders extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
 
                                     children: [
-                                      Text(order.title, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                      Text(order.title, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
 
                                       SizedBox(height: 10),
 
                                       Row(
                                         children: [
-                                          Text(order.label, style: TextStyle(fontWeight: FontWeight.w500)),
+                                          Text(order.label, style: TextStyle(fontWeight: AppFontWeights.medium)),
                                           SizedBox(width: 10),
                                           Text(order.time),
                                         ],
@@ -130,7 +131,7 @@ class MyOrders extends StatelessWidget {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('Order Summary', style: TextStyle(fontWeight: FontWeight.w500)),
+                                          Text('Order Summary', style: TextStyle(fontWeight: AppFontWeights.medium)),
                                           SizedBox(width: 10),
                                           Expanded(child: Text(order.summary)),
                                         ],
@@ -140,7 +141,7 @@ class MyOrders extends StatelessWidget {
 
                                       Row(
                                         children: [
-                                          Text('Total Price Paid', style: TextStyle(fontWeight: FontWeight.w500)),
+                                          Text('Total Price Paid', style: TextStyle(fontWeight: AppFontWeights.medium)),
                                           SizedBox(width: 10),
                                           Text(order.price),
                                         ],
@@ -167,7 +168,7 @@ class MyOrders extends StatelessWidget {
 
                                     child: Text(
                                       order.button,
-                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+                                      style: TextStyle(color: Colors.black, fontWeight: AppFontWeights.bold, fontSize: 17),
                                     ),
                                   ),
                                 ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/Views/TrackOrder.dart';
 import 'package:provider/provider.dart';
@@ -110,16 +111,16 @@ class _HomePageState extends State<HomePage> {
 
         title: RichText(
           text: TextSpan(
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, fontWeight: AppFontWeights.bold),
             children: [
               TextSpan(
                 text: 'Track Order:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
               ),
 
               TextSpan(
                 text: '#120340',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Color.fromRGBO(85, 85, 85, 1)),
+                style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
               ),
             ],
           ),
@@ -161,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           'Cliff Rogers',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Text('Delivery guy'),
                       ],
@@ -183,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                     Spacer(),
                     Text(
                       '30mins',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ],
                 ),
@@ -196,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                     Spacer(),
                     Text(
                       'Home',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ],
                 ),
@@ -215,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                     style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),
                     child: Text(
                       'More Details',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ),
                 ),

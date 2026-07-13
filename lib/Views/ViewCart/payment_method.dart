@@ -23,7 +23,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'Payment Method',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+          style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
         ),
         centerTitle: true,
         actions: [
@@ -31,7 +31,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             padding: EdgeInsetsGeometry.only(right: 9),
             child: Text(
               "Apply",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+              style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
             ),
           ),
         ],
@@ -51,7 +51,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   children: [
                     Text(
                       'Add UPI payment method',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                     ),
                     Spacer(),
                     GestureDetector(
@@ -66,7 +66,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
                       child: Text(
                         'ADD',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+                        style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                       ),
                     ),
                   ],
@@ -74,14 +74,14 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 SizedBox(height: 20),
                 Text(
                   'SAVED CARDS',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                  style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(height: 20),
                 Row(
                   children: [
                     Text(
                       'ADD NEW CARDS',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                     ),
                     Spacer(),
                     GestureDetector(
@@ -96,7 +96,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
                       child: Text(
                         'ADD',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+                        style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                       ),
                     ),
                   ],
@@ -117,7 +117,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                             Row(
                               children: [
                                 Image.asset('assets/images/MasterCard.png'),
-                                Text("**** **** **** 0000", style: TextStyle(fontSize: 18, letterSpacing: 2.0, fontWeight: FontWeight.bold)),
+                                Text("**** **** **** 0000", style: TextStyle(fontSize: 18, letterSpacing: 2.0, fontWeight: AppFontWeights.bold)),
                                 Spacer(),
                                 // Radio<int>(
                                 //   value: 1,
@@ -140,19 +140,19 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 SizedBox(height: 20),
                 Text(
                   'WALLETS',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                  style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(height: 20),
                 Row(
                   children: [
                     Text(
                       'Mobikwik',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                     ),
                     Spacer(),
                     Text(
                       'LINK ACCOUNT',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+                      style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                     ),
                     SizedBox(height: 20),
                   ],
@@ -163,12 +163,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   children: [
                     Text(
                       'PhonePe',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                     ),
                     Spacer(),
                     Text(
                       'LINK ACCOUNT',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+                      style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                     ),
                   ],
                 ),
@@ -179,12 +179,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   children: [
                     Text(
                       'Amazon payment options',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                     ),
                     Spacer(),
                     Text(
                       'LINK ACCOUNT',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primaryGreen),
+                      style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                     ),
                   ],
                 ),
@@ -193,7 +193,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 SizedBox(height: 20),
                 Text(
                   'Cash On Delivery',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                  style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                 ),
                 SizedBox(height: 10),
                 InkWell(
@@ -206,7 +206,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     children: [
                       Text(
                         'Pay after deliver your order',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                        style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                       ),
                       Spacer(),
                       Radio<int>(
@@ -243,14 +243,14 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     children: [
                       Text(
                         vm.getAllCartResponseModel.data?.totalAmount?.toString() ?? '0.0',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryBlack),
+                        style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                       ),
 
                       SizedBox(height: 4),
 
                       Text(
                         'View Detailed Bill',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: AppColors.primaryGreen),
+                        style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.regular, color: AppColors.primaryGreen),
                       ),
                     ],
                   ),
@@ -287,7 +287,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   ),
                   child: Text(
                     'Proceed To Pay',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.primaryWhite),
+                    style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                   ),
                 ),
               ],

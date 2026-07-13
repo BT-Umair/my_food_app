@@ -112,7 +112,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             SizedBox(width: 10),
                             Text(
                               'Your Order has been Delivered',
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Color.fromRGBO(54, 58, 51, 1)),
+                              style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.large, color: Color.fromRGBO(54, 58, 51, 1)),
                             ),
                           ],
                         ),

@@ -29,12 +29,12 @@ class _AddressState extends State<Address> {
     final addAddressVm = Provider.of<AddAddressViewModel>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.primaryWhite,
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'Address',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+          style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
         ),
         centerTitle: true,
         actions: [
@@ -51,7 +51,7 @@ class _AddressState extends State<Address> {
               child: Center(
                 child: Text(
                   "U",
-                  style: TextStyle(fontSize: AppFontSize.medium, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                  style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                 ),
               ),
             ),
@@ -194,7 +194,7 @@ class _AddressState extends State<Address> {
                                                 "Delete Address?",
                                                 style: TextStyle(
                                                   fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
+                                                  fontWeight: AppFontWeights.bold,
                                                   color: isDark ? Colors.white : const Color(0xFF212121),
                                                 ),
                                               ),
@@ -221,7 +221,7 @@ class _AddressState extends State<Address> {
                                                       "NO, CANCEL",
                                                       style: TextStyle(
                                                         fontSize: 13,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight: AppFontWeights.bold,
                                                         color: isDark ? Colors.white60 : Colors.grey[700],
                                                       ),
                                                     ),
@@ -293,7 +293,7 @@ class _AddressState extends State<Address> {
                         style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                         child: Text(
                           'Add New Address',
-                          style: TextStyle(fontSize: AppFontSize.medium, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                       ),
                     ),

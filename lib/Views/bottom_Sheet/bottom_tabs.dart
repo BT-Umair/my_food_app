@@ -45,7 +45,7 @@ class BottomTabs extends StatelessWidget {
                       },
                       child: Text(
                         'Home',
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(255, 255, 255, 1)),
+                        style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(255, 255, 255, 1)),
                       ),
                     ),
                   ],

@@ -34,7 +34,7 @@ class _SearchTypeState extends State<SearchType> {
             leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
             title: Text(
               'Search',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+              style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
             ),
             centerTitle: true,
             actions: [
@@ -48,7 +48,7 @@ class _SearchTypeState extends State<SearchType> {
                   child: Center(
                     child: Text(
                       "U",
-                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
+                      style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                     ),
                   ),
                 ),
@@ -113,7 +113,7 @@ class _SearchTypeState extends State<SearchType> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     SizedBox(height: 3),
-                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.large)),
                                     SizedBox(height: 5),
                                     Image.asset('assets/images/Group 34064.png'),
                                   ],

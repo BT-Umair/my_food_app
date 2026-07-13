@@ -54,7 +54,7 @@ class _ViewCartState extends State<ViewCart> {
                 SizedBox(width: 20),
                 Text(
                   vm.getAllCartResponseModel.data?.restaurant?.name ?? "",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: AppColors.primaryBlack),
+                  style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                 ),
               ],
             ),
@@ -65,7 +65,7 @@ class _ViewCartState extends State<ViewCart> {
                 Icon(Icons.location_on, color: AppColors.darkCharcoal),
                 Text(
                   vm4.getAddressResponseModel.data!.addressLine!,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                 ),
                 Image.asset('assets/images/angle-down.png'),
               ],
@@ -88,7 +88,7 @@ class _ViewCartState extends State<ViewCart> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(cart.name!, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                            Text(cart.name!, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
                             SizedBox(width: 10),
                           ],
                         ),
@@ -118,7 +118,7 @@ class _ViewCartState extends State<ViewCart> {
                               },
                               child: const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Text('-', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                child: Text('-', style: TextStyle(fontSize: 20, fontWeight: AppFontWeights.bold)),
                               ),
                             ),
 
@@ -143,7 +143,7 @@ class _ViewCartState extends State<ViewCart> {
                       SizedBox(width: 10),
                       Text(
                         "₹${cart.price?.toString()}",
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.primaryBlack),
+                        style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                       ),
                     ],
                   );
@@ -162,7 +162,7 @@ class _ViewCartState extends State<ViewCart> {
                 children: [
                   Text(
                     'Saving Corner',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+                    style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                   ),
 
                   InkWell(
@@ -181,7 +181,7 @@ class _ViewCartState extends State<ViewCart> {
                         SizedBox(width: 8),
                         Text(
                           'Apply Coupon',
-                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color.fromRGBO(85, 85, 85, 1)),
+                          style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                         ),
                         SizedBox(height: 40),
                         Spacer(),
@@ -264,14 +264,14 @@ class _ViewCartState extends State<ViewCart> {
                       Text(
                         "₹${vm.getAllCartResponseModel.data?.totalAmount?.toString() ?? ""}",
 
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryBlack),
+                        style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
                       ),
 
                       SizedBox(height: 4),
 
                       Text(
                         'View Detailed Bill',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: AppColors.primaryGreen),
+                        style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.regular, color: AppColors.primaryGreen),
                       ),
                     ],
                   ),
@@ -288,7 +288,7 @@ class _ViewCartState extends State<ViewCart> {
                   ),
                   child: Text(
                     'Proceed To Pay',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.primaryWhite),
+                    style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                   ),
                 ),
               ],
@@ -304,12 +304,12 @@ class _ViewCartState extends State<ViewCart> {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: AppColors.darkCharcoal),
+          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
         ),
         Spacer(),
         Text(
           '₹$value',
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
+          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.large, color: AppColors.primaryBlack),
         ),
       ],
     );

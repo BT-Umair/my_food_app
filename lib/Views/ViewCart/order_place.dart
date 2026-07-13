@@ -31,12 +31,12 @@ class _OrderPlaceState extends State<OrderPlace> {
                 Image.asset('assets/images/Check filled.png'),
                 Text(
                   'Yay! Your order\nhas been placed.',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color.fromRGBO(54, 58, 51, 1)),
+                  style: TextStyle(fontSize: 32, fontWeight: AppFontWeights.bold, color: Color.fromRGBO(54, 58, 51, 1)),
                 ),
                 Text(
                   'Your order would be delivered in the\n30 mins atmost',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(96, 101, 92, 1)),
+                  style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(96, 101, 92, 1)),
                 ),
                 SizedBox(height: 50),
                 Row(
@@ -45,12 +45,12 @@ class _OrderPlaceState extends State<OrderPlace> {
                     SizedBox(width: 5),
                     Text(
                       'Estimated time',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(96, 101, 92, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(96, 101, 92, 1)),
                     ),
                     Spacer(),
                     Text(
                       '30mins',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ],
                 ),
@@ -64,7 +64,7 @@ class _OrderPlaceState extends State<OrderPlace> {
                     Spacer(),
                     Text(
                       'Home',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ],
                 ),
@@ -77,7 +77,7 @@ class _OrderPlaceState extends State<OrderPlace> {
                     Spacer(),
                     Text(
                       vm.getAllCartResponseModel.data?.totalAmount?.toString() ?? '0.0',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                      style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                     ),
                   ],
                 ),
@@ -92,14 +92,14 @@ class _OrderPlaceState extends State<OrderPlace> {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(84, 163, 18, 1),
-                        foregroundColor: Color.fromRGBO(84, 163, 18, 1),
+                        backgroundColor: AppColors.primaryGreen,
+                        foregroundColor: AppColors.primaryGreen,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
                       ),
 
                       child: Text(
                         "Track Order",
-                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: AppColors.primaryWhite),
+                        style: TextStyle(fontWeight: AppFontWeights.medium, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                       ),
                     ),
                   ),

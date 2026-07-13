@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Image.asset('assets/images/Location.png', width: 20),
                                 Text(
                                   address?.addressType ?? "",
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.primaryBlack),
+                                  style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.large, color: AppColors.primaryBlack),
                                 ),
                                 Image.asset('assets/images/angle-down.png'),
                               ],
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       Text(
                         address?.addressLine ?? "",
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.darkCharcoal),
+                        style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.large, color: AppColors.darkCharcoal),
                       ),
                       SizedBox(height: 20),
                       Row(
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     SizedBox(height: 3),
-                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                                    Text('VEG', style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.large)),
                                     SizedBox(height: 5),
                                     Image.asset('assets/images/Group 34064.png'),
                                   ],

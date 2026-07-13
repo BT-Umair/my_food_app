@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/ProfileViewModel.dart';
 import 'package:my_foodapp/ViewModels/ThemeProviderViewModel.dart';
 import 'package:my_foodapp/Views/address.dart';
@@ -33,7 +34,7 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'My Profile',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 1)),
+          style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
         ),
         centerTitle: true,
         actions: [
@@ -50,7 +51,7 @@ class _ProfileState extends State<Profile> {
               child: Center(
                 child: Text(
                   vm.firstLetter!,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(255, 255, 255, 1)),
+                  style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                 ),
               ),
             ),
@@ -79,7 +80,7 @@ class _ProfileState extends State<Profile> {
                       children: [
                         Text(
                           vm.name!,
-                          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Text(vm.emailAddress!),
                       ],
@@ -107,7 +108,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 20),
               Text(
                 'General',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(112, 117, 107, 1)),
+                style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(112, 117, 107, 1)),
               ),
               SizedBox(height: 20),
               Container(
@@ -126,10 +127,10 @@ class _ProfileState extends State<Profile> {
                           SizedBox(width: 10),
                           Text(
                             'My Account',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                            style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                          Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                         ],
                       ),
                     ),
@@ -145,10 +146,10 @@ class _ProfileState extends State<Profile> {
                           SizedBox(width: 10),
                           Text(
                             'My Orders',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                            style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                           ),
                           Spacer(),
-                          Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                          Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                         ],
                       ),
                     ),
@@ -160,10 +161,10 @@ class _ProfileState extends State<Profile> {
                         SizedBox(width: 10),
                         Text(
                           'Payment Mode',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                       ],
                     ),
                     SizedBox(height: 25),
@@ -180,10 +181,10 @@ class _ProfileState extends State<Profile> {
                             SizedBox(width: 10),
                             Text(
                               "Addresses",
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                              style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                             ),
                             Spacer(),
-                            Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                            Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                           ],
                         ),
                       ),
@@ -196,10 +197,10 @@ class _ProfileState extends State<Profile> {
                         SizedBox(width: 10),
                         Text(
                           'Favorites',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                       ],
                     ),
                     SizedBox(height: 25),
@@ -213,12 +214,12 @@ class _ProfileState extends State<Profile> {
                           },
                           child: Text(
                             'Saved By Me',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                            style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                           ),
                         ),
 
                         Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                       ],
                     ),
                     SizedBox(height: 25),
@@ -228,10 +229,10 @@ class _ProfileState extends State<Profile> {
                         SizedBox(width: 10),
                         Text(
                           'My Preferences',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: Color.fromRGBO(169, 173, 165, 1)),
+                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
                       ],
                     ),
                   ],
@@ -241,7 +242,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 25),
               Text(
                 'Theme',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color.fromRGBO(112, 117, 107, 1)),
+                style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(112, 117, 107, 1)),
               ),
               Container(
                 decoration: BoxDecoration(color: Color.fromRGBO(250, 250, 250, 1), borderRadius: BorderRadius.circular(10)),
@@ -254,7 +255,7 @@ class _ProfileState extends State<Profile> {
                         SizedBox(width: 10),
                         Text(
                           'Dark mode',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromRGBO(54, 58, 51, 1)),
+                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Spacer(),
                         Switch(
