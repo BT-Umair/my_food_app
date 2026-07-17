@@ -81,8 +81,8 @@ class Login extends StatelessWidget {
                                 if (await vm.login(context)) {}
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(84, 163, 18, 1),
-                                foregroundColor: Color.fromRGBO(84, 163, 18, 1),
+                                backgroundColor: AppColors.primaryGreen,
+                                foregroundColor: AppColors.primaryGreen,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
                               ),
 

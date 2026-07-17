@@ -6,10 +6,7 @@ class Const {
   static final EMAIL = "email";
 
   // API URL.
-  static final BASE_URL = "http://192.168.0.170:8000/api/";
-  static final IMAGE_URL = "http://192.168.0.170:8000/images/restaurant/";
-  static final MENUIMAGE_URL = "http://192.168.0.170:8000/images/menu/";
-  static final CATEGORYIMAGE_URL = "http://192.168.0.170:8000/images/category/";
+  static final BASE_URL = "http://192.168.0.160:8000/api/";
 
   static final SEND_OTP = "v1/sendOtp";
   static final VERIFY_OTP = "v1/verifyOtp";
@@ -35,4 +32,9 @@ class Const {
   static final REMOVE_COUPON_FROM_CART = "v1/removeCouponFromCart";
   static final PLACE_ORDER = "v1/placeOrder";
   static final GET_MY_ORDER = "v1/getMyOrders";
+  static final TRACK_ORDER = "v1/trackOrder";
+  static final TOGGLE_WISH_LIST = "v1/toggle-wishlist";
+  static final MY_WISH_LIST = "v1/my-wishlist";
+  static final TOGGLE_SAVE_RESTAURANT = "v1/toggle-save-restaurant";
+  static final MY_SAVED_RESTAURANT = "v1/my-saved-restaurants";
 }

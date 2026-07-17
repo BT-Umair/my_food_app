@@ -2,16 +2,14 @@ class AddToCartRequestModel {
   String? menuId;
   String? restaurantId;
   int? quantity;
-  Variant? variant;
   List<Addons>? addons;
 
-  AddToCartRequestModel({this.menuId, this.restaurantId, this.quantity, this.variant, this.addons});
+  AddToCartRequestModel({this.menuId, this.restaurantId, this.quantity, this.addons});
 
   AddToCartRequestModel.fromJson(Map<String, dynamic> json) {
     menuId = json['menu_id'];
     restaurantId = json['restaurant_id'];
     quantity = json['quantity'];
-    variant = json['variant'] != null ? new Variant.fromJson(json['variant']) : null;
     if (json['addons'] != null) {
       addons = <Addons>[];
       json['addons'].forEach((v) {
@@ -25,9 +23,6 @@ class AddToCartRequestModel {
     data['menu_id'] = this.menuId;
     data['restaurant_id'] = this.restaurantId;
     data['quantity'] = this.quantity;
-    if (this.variant != null) {
-      data['variant'] = this.variant!.toJson();
-    }
     if (this.addons != null) {
       data['addons'] = this.addons!.map((v) => v.toJson()).toList();
     }
@@ -35,43 +30,25 @@ class AddToCartRequestModel {
   }
 }
 
-class Variant {
-  String? groupName;
-  String? optionName;
-
-  Variant({this.groupName, this.optionName});
-
-  Variant.fromJson(Map<String, dynamic> json) {
-    groupName = json['groupName'];
-    optionName = json['optionName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['groupName'] = this.groupName;
-    data['optionName'] = this.optionName;
-    return data;
-  }
-}
-
 class Addons {
-  String? groupName;
-  String? optionName;
+  String? addonGroupId;
+  String? optionId;
   int? quantity;
 
-  Addons({this.groupName, this.optionName, this.quantity});
+  Addons({this.addonGroupId, this.optionId, this.quantity});
 
   Addons.fromJson(Map<String, dynamic> json) {
-    groupName = json['groupName'];
-    optionName = json['optionName'];
+    addonGroupId = json['addon_group_id'] ?? json['addon_group_id'];
+    optionId = json['option_id'] ?? json['option_id'];
     quantity = json['quantity'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['groupName'] = this.groupName;
-    data['optionName'] = this.optionName;
-    data['quantity'] = this.quantity;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['addon_group_id'] = addonGroupId;
+    data['option_id'] = optionId;
+    data['quantity'] = quantity;
+
     return data;
   }
 }

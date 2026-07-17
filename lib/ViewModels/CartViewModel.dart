@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Models/ApplyCouponCodeResponseModel.dart';
 import 'package:my_foodapp/Models/GetAllCartResponseModel.dart' hide Coupon;
-import 'package:my_foodapp/Models/GetMyOrderResponseModel.dart' hide DeliveryAddress;
 import 'package:my_foodapp/Models/PlaceOrderRequestModel.dart';
 import 'package:my_foodapp/Models/PlaceOrderResponseModel.dart' hide DeliveryAddress;
 import 'package:my_foodapp/Services/CartService.dart';
@@ -9,11 +8,10 @@ import 'package:my_foodapp/Utils/themes.dart';
 
 class CartViewModel extends ChangeNotifier {
   bool isLoading = false;
-  Cartservice _cartservice = Cartservice();
+  final Cartservice _cartservice = Cartservice();
 
   GetAllCartResponseModel getAllCartResponseModel = GetAllCartResponseModel();
   PlaceOrderResponseModel placeOrderResponseModel = PlaceOrderResponseModel();
-  GetMyOrderResponseModel getMyOrderResponseModel = GetMyOrderResponseModel();
 
   Coupon? _selectedCoupon;
 
@@ -198,34 +196,6 @@ class CartViewModel extends ChangeNotifier {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString().replaceAll('Exception: ', '')), backgroundColor: Colors.red));
       }
 
-      return false;
-    } finally {
-      isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // GetMyOrder API.
-
-  Future<bool> getMyOrder(BuildContext context) async {
-    isLoading = true;
-    notifyListeners();
-
-    try {
-      final response = await _cartservice.getMyOrder();
-
-      getMyOrderResponseModel = GetMyOrderResponseModel.fromJson(response!);
-      print('$response');
-
-      if (getMyOrderResponseModel.status!) {
-        print('$response');
-        return true;
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getMyOrderResponseModel.message!)));
-        return false;
-      }
-    } catch (e) {
-      print(e);
       return false;
     } finally {
       isLoading = false;

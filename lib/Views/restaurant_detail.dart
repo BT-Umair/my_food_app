@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_foodapp/Utils/constants.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/Shimmer/restaurant_shimmer.dart';
@@ -20,6 +19,7 @@ class RestaurantDetail extends StatefulWidget {
 }
 
 class _RestaurantDetailState extends State<RestaurantDetail> {
+  bool isLiked = false;
   @override
   void initState() {
     super.initState();
@@ -74,7 +74,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                 Expanded(
                                   child: Text(
                                     widget.restname ?? "",
-                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                                    style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                                   ),
                                 ),
                                 Image.asset('assets/images/Pure veg.png'),
@@ -122,7 +122,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                         SizedBox(width: 5),
                         Text(
                           'Flat ₹80 OFF above ₹199',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                          style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                         ),
                         Spacer(),
                         Text('5 Offers'),
@@ -164,7 +164,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                     padding: EdgeInsets.only(left: 12),
                     child: Text(
                       'Recommended for you',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                     ),
                   ),
 
@@ -175,13 +175,14 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                       padding: EdgeInsets.all(10),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 1,
-                        mainAxisSpacing: 5,
-                        mainAxisExtent: 230,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.68,
                       ),
                       itemCount: vm.getMenuItemsResponseModel.data!.getData!.length,
                       itemBuilder: (context, index) {
                         final menu = vm.getMenuItemsResponseModel.data!.getData![index];
+
                         return Padding(
                           padding: EdgeInsets.all(10),
                           child: Container(
@@ -198,21 +199,43 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                 Stack(
                                   children: [
                                     ClipRRect(
-                                      borderRadius: BorderRadiusGeometry.circular(15),
+                                      borderRadius: BorderRadius.circular(15),
                                       child: GestureDetector(
                                         onTap: () {
                                           showModalBottomSheet(
                                             context: context,
                                             isScrollControlled: true,
                                             backgroundColor: Colors.transparent,
-                                            builder: (_) => FoodDetailSheet(),
+                                            builder: (_) => FoodDetailSheet(itemData: menu),
                                           );
                                         },
-                                        child: Image.network('${Const.MENUIMAGE_URL}${menu.image}', fit: BoxFit.cover),
+                                        child: Image.network('${menu.image}', fit: BoxFit.cover),
                                       ),
                                     ),
 
-                                    Align(alignment: Alignment.centerRight, child: Image.asset('assets/images/like (1).png', width: 40)),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          setState(() {
+                                            isLiked = !isLiked;
+                                          });
+                                          bool success = await context.read<RestaurantDetailViewModel>().toggleWishlist(context, menu.sId ?? "");
+                                          if (!success) {
+                                            setState(() {
+                                              isLiked = !isLiked;
+                                            });
+                                          }
+                                        },
+
+                                        child: Image.asset(
+                                          'assets/images/like (1).png',
+                                          width: 40,
+                                          color: isLiked ? Colors.red : null,
+                                          colorBlendMode: isLiked ? BlendMode.srcIn : null,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
 
@@ -222,14 +245,14 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                     Image.asset('assets/images/Frame 2.png'),
                                     Spacer(),
                                     Icon(Icons.star, color: Color.fromRGBO(94, 173, 29, 1)),
-                                    Text(menu.rating!.toString(), style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                                    Text(menu.rating!.toString(), style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.regular)),
                                   ],
                                 ),
                                 Row(
                                   children: [
                                     Text(
                                       menu.name!,
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                                      style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                                     ),
                                   ],
                                 ),
@@ -237,7 +260,11 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                   children: [
                                     Text(
                                       menu.price!.toString(),
-                                      style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
+                                      style: TextStyle(
+                                        fontSize: AppFontSize.medium,
+                                        fontWeight: AppFontWeights.regular,
+                                        color: AppColors.darkCharcoal,
+                                      ),
                                     ),
                                     Spacer(),
                                     OutlinedButton(
@@ -249,12 +276,12 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                             context: context,
                                             isScrollControlled: true,
                                             backgroundColor: Colors.transparent,
-                                            builder: (_) => CustomizeSheet(),
+                                            builder: (_) => CustomizeSheet(itemData: menu),
                                           );
                                         },
                                         child: Text(
                                           "ADD",
-                                          style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(84, 163, 18, 1)),
+                                          style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.primaryGreen),
                                         ),
                                       ),
                                     ),

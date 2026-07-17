@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_foodapp/Models/GetAddressResponseModel.dart';
 import 'package:my_foodapp/Models/GetAllCategoryResponseModel.dart';
 import 'package:my_foodapp/Models/RestaurantListResponseModel.dart';
+import 'package:my_foodapp/Models/RestaurantSaveResponseModel.dart';
 import 'package:my_foodapp/Services/AddressService.dart';
 import 'package:my_foodapp/Services/CategoryService.dart';
 import 'package:my_foodapp/Services/RestaurantService.dart';
@@ -35,6 +36,7 @@ class HomeViewModel extends ChangeNotifier {
   GetAddressResponseModel getAddressResponseModel = GetAddressResponseModel();
   GetAllCategoryResponseModel getAllCategoryResponseModel = GetAllCategoryResponseModel();
   RestaurantListResponseModel restaurantListResponseModel = RestaurantListResponseModel();
+  RestaurantSaveResponseModel restaurantSaveResponseModel = RestaurantSaveResponseModel();
 
   Future<bool> getAddressApi(BuildContext context, String? id) async {
     notifyListeners();
@@ -102,6 +104,31 @@ class HomeViewModel extends ChangeNotifier {
       }
     } catch (e) {
       print(e);
+      return false;
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // SavedRestaurant API.
+
+  Future<bool> toggleSaveRestaurant(BuildContext context, String restaurantId) async {
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      final response = await _restaurantservice.toggleSaveRestaurant(restaurantId);
+      print('$response');
+      restaurantSaveResponseModel = RestaurantSaveResponseModel.fromJson(response!);
+
+      if (restaurantSaveResponseModel.status!) {
+        return true;
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(restaurantSaveResponseModel.message!)));
+        return false;
+      }
+    } catch (e) {
       return false;
     } finally {
       isLoading = false;

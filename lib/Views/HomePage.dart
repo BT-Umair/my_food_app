@@ -5,11 +5,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/CartViewModel.dart';
+import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
 import 'package:my_foodapp/Views/TrackOrder.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String? orderId;
+  const HomePage({Key? key, this.orderId}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -103,6 +105,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<CartViewModel>();
+    final vm1 = context.watch<MyAccountViewModel>();
     return Scaffold(
       appBar: AppBar(
         actions: [Icon(Icons.more_vert_outlined)],
@@ -161,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                     Column(
                       children: [
                         Text(
-                          'Cliff Rogers',
+                          vm1.userNameController.text,
                           style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: Color.fromRGBO(54, 58, 51, 1)),
                         ),
                         Text('Delivery guy'),
@@ -206,11 +209,9 @@ class _HomePageState extends State<HomePage> {
                   width: 353,
                   height: 52,
                   child: OutlinedButton(
-                    onPressed: () async {
-                      await vm.getMyOrder(context);
-
+                    onPressed: () {
                       if (context.mounted) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrder()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrder(orderId: widget.orderId!)));
                       }
                     },
                     style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),

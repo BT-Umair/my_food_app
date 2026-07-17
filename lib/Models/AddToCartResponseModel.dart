@@ -1,23 +1,24 @@
 class AddToCartResponseModel {
   bool? status;
   String? message;
-  Data? data;
+  dynamic data;
 
   AddToCartResponseModel({this.status, this.message, this.data});
 
   AddToCartResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'];
+    // data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
+
+    data['data'] = this.data;
+
     return data;
   }
 }
@@ -30,7 +31,7 @@ class Data {
   int? surgeCharge;
   int? platformFee;
   int? packingCharge;
-  double? discount;
+  int? discount;
   double? gstRate;
   double? gstAndCharges;
   double? totalAmount;
@@ -39,9 +40,9 @@ class Data {
   bool? isSurge;
   bool? freeDelivery;
   String? createdAt;
-  Restaurant? restaurant;
   List<Items>? items;
-  Coupon? coupon;
+  Null? coupon;
+  Null? restaurant;
 
   Data({
     this.sId,
@@ -60,9 +61,9 @@ class Data {
     this.isSurge,
     this.freeDelivery,
     this.createdAt,
-    this.restaurant,
     this.items,
     this.coupon,
+    this.restaurant,
   });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -82,14 +83,14 @@ class Data {
     isSurge = json['isSurge'];
     freeDelivery = json['freeDelivery'];
     createdAt = json['createdAt'];
-    restaurant = json['restaurant'] != null ? new Restaurant.fromJson(json['restaurant']) : null;
     if (json['items'] != null) {
       items = <Items>[];
       json['items'].forEach((v) {
         items!.add(new Items.fromJson(v));
       });
     }
-    coupon = json['coupon'] != null ? new Coupon.fromJson(json['coupon']) : null;
+    coupon = json['coupon'];
+    restaurant = json['restaurant'];
   }
 
   Map<String, dynamic> toJson() {
@@ -110,37 +111,11 @@ class Data {
     data['isSurge'] = this.isSurge;
     data['freeDelivery'] = this.freeDelivery;
     data['createdAt'] = this.createdAt;
-    if (this.restaurant != null) {
-      data['restaurant'] = this.restaurant!.toJson();
-    }
     if (this.items != null) {
       data['items'] = this.items!.map((v) => v.toJson()).toList();
     }
-    if (this.coupon != null) {
-      data['coupon'] = this.coupon!.toJson();
-    }
-    return data;
-  }
-}
-
-class Restaurant {
-  String? sId;
-  String? name;
-  String? address;
-
-  Restaurant({this.sId, this.name, this.address});
-
-  Restaurant.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    address = json['address'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['address'] = this.address;
+    data['coupon'] = this.coupon;
+    data['restaurant'] = this.restaurant;
     return data;
   }
 }
@@ -152,12 +127,12 @@ class Items {
   String? restaurantId;
   String? menuId;
   String? name;
-  dynamic price;
+  int? price;
   String? image;
-  String? variant;
-  List<Addon>? addons;
+  Null? variant;
+  List<Addons>? addons;
   int? quantity;
-  dynamic itemTotal;
+  int? itemTotal;
   int? iV;
 
   Items({
@@ -187,93 +162,61 @@ class Items {
     image = json['image'];
     variant = json['variant'];
     if (json['addons'] != null) {
-      addons = <Addon>[];
+      addons = <Addons>[];
       json['addons'].forEach((v) {
-        addons!.add(Addon.fromJson(v));
+        addons!.add(new Addons.fromJson(v));
       });
     }
-
     quantity = json['quantity'];
     itemTotal = json['itemTotal'];
     iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
-    data['cart_id'] = cartId;
-    data['user_id'] = userId;
-    data['restaurant_id'] = restaurantId;
-    data['menu_id'] = menuId;
-    data['name'] = name;
-    data['price'] = price;
-    data['image'] = image;
-    data['variant'] = variant;
-    if (addons != null) {
-      data['addons'] = addons!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['cart_id'] = this.cartId;
+    data['user_id'] = this.userId;
+    data['restaurant_id'] = this.restaurantId;
+    data['menu_id'] = this.menuId;
+    data['name'] = this.name;
+    data['price'] = this.price;
+    data['image'] = this.image;
+    data['variant'] = this.variant;
+    if (this.addons != null) {
+      data['addons'] = this.addons!.map((v) => v.toJson()).toList();
     }
-    data['quantity'] = quantity;
-    data['itemTotal'] = itemTotal;
-    data['__v'] = iV;
+    data['quantity'] = this.quantity;
+    data['itemTotal'] = this.itemTotal;
+    data['__v'] = this.iV;
     return data;
   }
 }
 
-class Coupon {
+class Addons {
+  String? groupName;
+  String? optionName;
+  int? price;
+  int? quantity;
   String? sId;
-  String? code;
-  String? discountType;
-  int? discountValue;
-  int? minOrderAmount;
-  int? maxDiscount;
-  String? expiryDate;
-  String? description;
 
-  Coupon({this.sId, this.code, this.discountType, this.discountValue, this.minOrderAmount, this.maxDiscount, this.expiryDate, this.description});
+  Addons({this.groupName, this.optionName, this.price, this.quantity, this.sId});
 
-  Coupon.fromJson(Map<String, dynamic> json) {
+  Addons.fromJson(Map<String, dynamic> json) {
+    groupName = json['groupName'];
+    optionName = json['optionName'];
+    price = json['price'];
+    quantity = json['quantity'];
     sId = json['_id'];
-    code = json['code'];
-    discountType = json['discountType'];
-    discountValue = json['discountValue'];
-    minOrderAmount = json['minOrderAmount'];
-    maxDiscount = json['maxDiscount'];
-    expiryDate = json['expiryDate'];
-    description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['groupName'] = this.groupName;
+    data['optionName'] = this.optionName;
+    data['price'] = this.price;
+    data['quantity'] = this.quantity;
     data['_id'] = this.sId;
-    data['code'] = this.code;
-    data['discountType'] = this.discountType;
-    data['discountValue'] = this.discountValue;
-    data['minOrderAmount'] = this.minOrderAmount;
-    data['maxDiscount'] = this.maxDiscount;
-    data['expiryDate'] = this.expiryDate;
-    data['description'] = this.description;
-    return data;
-  }
-}
-
-class Addon {
-  String? sId;
-  String? name;
-  dynamic price;
-
-  Addon({this.sId, this.name, this.price});
-
-  Addon.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    price = json['price'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
-    data['name'] = name;
-    data['price'] = price;
     return data;
   }
 }

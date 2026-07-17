@@ -1,19 +1,22 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:my_foodapp/Models/AddToCartRequestModel.dart';
+import 'package:my_foodapp/Models/GetMenuItemsResponseModel.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/ViewCart/view_cart.dart';
 import 'package:provider/provider.dart';
 
 class CustomizeSheet extends StatefulWidget {
-  const CustomizeSheet({super.key});
+  final GetData itemData;
+  const CustomizeSheet({super.key, required this.itemData});
 
   @override
   State<CustomizeSheet> createState() => _CustomizeSheetState();
 }
 
 class _CustomizeSheetState extends State<CustomizeSheet> {
-  int selectedValue = 1;
+  Map<int, int> selectedValues = {};
   int itemQuantity = 1;
 
   @override
@@ -21,6 +24,7 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
     return Consumer<RestaurantDetailViewModel>(
       builder: (context, vm, child) {
         final menu = vm.getMenuItemsResponseModel.data!.getData!;
+        final customizationsList = widget.itemData.customizations ?? [];
         return Stack(
           clipBehavior: Clip.none,
           children: [
@@ -52,8 +56,8 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(menu.first.name!, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
-                                      Text(menu.first.price!.toString()),
+                                      Text(widget.itemData.name ?? "Dish Name", style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
+                                      Text("₹${widget.itemData.price ?? 0}"),
                                     ],
                                   ),
                                   Spacer(),
@@ -64,7 +68,10 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                                       Row(
                                         children: [
                                           Icon(Icons.star, color: Color.fromRGBO(84, 163, 18, 1)),
-                                          Text(menu.first.rating!.toString(), style: TextStyle(fontSize: 14, color: AppColors.darkCharcoal)),
+                                          Text(
+                                            widget.itemData.rating?.toString() ?? "0.0",
+                                            style: TextStyle(fontSize: 14, color: AppColors.darkCharcoal),
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -74,29 +81,32 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                             ),
 
                             ListView.separated(
-                              itemCount: 4,
+                              itemCount: customizationsList.length,
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               separatorBuilder: (_, __) => SizedBox(height: 10),
                               itemBuilder: (context, outerIndex) {
+                                final group = customizationsList[outerIndex];
+                                final options = group.options ?? [];
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Choose Your Filling", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                                    Text(group.groupName ?? "Select Option", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
                                     SizedBox(height: 10),
 
                                     ListView.separated(
-                                      itemCount: 2,
+                                      itemCount: options.length,
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
                                       separatorBuilder: (_, __) => SizedBox(height: 10),
                                       itemBuilder: (context, innerIndex) {
-                                        int value = outerIndex * 10 + innerIndex;
+                                        final optionItem = options[innerIndex];
+                                        int radioValue = innerIndex;
 
                                         return GestureDetector(
                                           onTap: () {
                                             setState(() {
-                                              selectedValue = value;
+                                              selectedValues[outerIndex] = radioValue;
                                             });
                                           },
                                           child: DottedBorder(
@@ -112,16 +122,19 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                                               child: Row(
                                                 children: [
                                                   Radio<int>(
-                                                    value: value,
-                                                    groupValue: selectedValue,
+                                                    value: radioValue,
+                                                    groupValue: selectedValues[outerIndex] ?? -1,
+                                                    activeColor: Colors.green,
                                                     onChanged: (val) {
                                                       setState(() {
-                                                        selectedValue = val!;
+                                                        selectedValues[outerIndex] = val!;
                                                       });
                                                     },
                                                   ),
-                                                  Expanded(child: Text('Classic Masala (Potato)', maxLines: 1, overflow: TextOverflow.ellipsis)),
-                                                  Text('+ ₹20'),
+                                                  Expanded(
+                                                    child: Text(optionItem.name ?? "Custom Option", maxLines: 1, overflow: TextOverflow.ellipsis),
+                                                  ),
+                                                  Text('+ ₹${optionItem.price ?? 0}'),
                                                 ],
                                               ),
                                             ),
@@ -176,15 +189,25 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                               onPressed: vm.isLoading
                                   ? null
                                   : () async {
-                                      await vm.addToCart(
+                                      List<Addons> selectedAddonsList = [];
+                                      selectedValues.forEach((outerIdx, innerIdx) {
+                                        final group = customizationsList[outerIdx];
+                                        final option = group.options![innerIdx];
+
+                                        selectedAddonsList.add(Addons(addonGroupId: group.sId, optionId: option.sId, quantity: 1));
+                                      });
+
+                                      bool success = await vm.addToCart(
                                         context: context,
-                                        menuId: menu.first.sId ?? "",
-                                        restaurantId: menu.first.restaurantId ?? "",
+                                        menuId: widget.itemData.sId ?? "",
+                                        restaurantId: widget.itemData.restaurantId ?? "",
                                         quantity: itemQuantity,
+                                        addons: selectedAddonsList,
                                       );
 
-                                      if (context.mounted) {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewCart()));
+                                      if (success && context.mounted) {
+                                        Navigator.pop(context);
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewCart()));
                                       }
                                     },
 
@@ -197,7 +220,7 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                               child: vm.isLoading
                                   ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                                   : Text(
-                                      'Add To Cart - ₹${((menu.first.price ?? 0) * itemQuantity)}',
+                                      'Add To Cart - ₹${((widget.itemData.price ?? 0) * itemQuantity)}',
                                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
                                     ),
                             ),

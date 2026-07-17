@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_foodapp/Utils/constants.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/bottom_Sheet/Customize_Sheet.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetailSheet extends StatefulWidget {
-  const FoodDetailSheet({super.key});
+  final dynamic itemData;
+  const FoodDetailSheet({super.key, required this.itemData});
 
   @override
   State<FoodDetailSheet> createState() => _FoodDetailSheetState();
@@ -17,8 +17,8 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
   Widget build(BuildContext context) {
     return Consumer<RestaurantDetailViewModel>(
       builder: (context, vm, child) {
-        final menuList = vm.getMenuItemsResponseModel?.data?.getData;
-        final firstItem = menuList?.first;
+        final currentItem = widget.itemData;
+
         return Stack(
           clipBehavior: Clip.none,
           children: [
@@ -34,7 +34,11 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(borderRadius: BorderRadius.circular(16), child: Image.network('${Const.MENUIMAGE_URL}${firstItem?.image!}')),
+                      if (currentItem?.image != null)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.network('${currentItem.image}', fit: BoxFit.cover, width: double.infinity),
+                        ),
 
                       SizedBox(height: 12),
 
@@ -43,7 +47,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(firstItem!.name!, style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.large)),
+                            child: Text(currentItem?.name ?? "", style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.large)),
                           ),
                           InkWell(
                             onTap: () {
@@ -51,7 +55,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                                 context: context,
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
-                                builder: (_) => CustomizeSheet(),
+                                builder: (_) => CustomizeSheet(itemData: widget.itemData),
                               );
                             },
                             child: Container(
@@ -60,7 +64,6 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                                 border: Border.all(color: Colors.green),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-
                               child: Text(
                                 "ADD",
                                 style: TextStyle(color: Colors.green, fontWeight: AppFontWeights.large),
@@ -74,7 +77,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                         children: [
                           Icon(Icons.star, color: Colors.green, size: 22),
                           SizedBox(width: 2),
-                          Text(firstItem.rating?.toString() ?? ""),
+                          Text(currentItem?.rating?.toString() ?? "0.0"),
                           Spacer(),
 
                           InkWell(
@@ -83,7 +86,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
                                 context: context,
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
-                                builder: (_) => CustomizeSheet(),
+                                builder: (_) => CustomizeSheet(itemData: widget.itemData),
                               );
                             },
                             child: Text("Customize", style: TextStyle(color: Colors.black, fontSize: 14)),
@@ -93,12 +96,12 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
 
                       SizedBox(height: 8),
 
-                      Text(firstItem.price!.toString(), style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large)),
+                      Text(currentItem?.price?.toString() ?? "0", style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large)),
 
                       SizedBox(height: 8),
 
                       Text(
-                        firstItem.about!,
+                        currentItem?.about ?? "",
                         style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                       ),
                     ],

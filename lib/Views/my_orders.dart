@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/MyOrdersViewModel.dart';
+import 'package:my_foodapp/Views/HomePage.dart';
 import 'package:my_foodapp/Views/Shimmer/myorders_shimmer.dart';
 import 'package:provider/provider.dart';
 
-class MyOrders extends StatelessWidget {
+class MyOrders extends StatefulWidget {
   const MyOrders({super.key});
+  @override
+  State<MyOrders> createState() => _MyOrderState();
+}
+
+class _MyOrderState extends State<MyOrders> {
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     context.read<CartViewModel>().getMyOrder(context, type: '', page: 1, limit: 20);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<MyOrdersViewModel>(context);
-
+    final ordersList = vm.getMyOrderResponseModel?.data?.orders;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context)),
@@ -36,8 +50,9 @@ class MyOrders extends StatelessWidget {
                   children: [
                     Expanded(
                       child: InkWell(
-                        onTap: () {
-                          vm.changeTab(0);
+                        onTap: () async {
+                          context.read<MyOrdersViewModel>().getMyOrder(context, type: 'current', page: 1, limit: 20);
+                          vm.changeTab(0, context);
                         },
 
                         child: Container(
@@ -58,7 +73,8 @@ class MyOrders extends StatelessWidget {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          vm.changeTab(1);
+                          context.read<MyOrdersViewModel>().getMyOrder(context, type: 'previous', page: 1, limit: 20);
+                          vm.changeTab(1, context);
                         },
 
                         child: Container(
@@ -82,12 +98,12 @@ class MyOrders extends StatelessWidget {
 
                 Expanded(
                   child: ListView.separated(
-                    itemCount: vm.orders.length,
+                    itemCount: ordersList?.length ?? 0,
 
                     separatorBuilder: (_, __) => SizedBox(height: 15),
 
                     itemBuilder: (context, index) {
-                      final order = vm.orders[index];
+                      final order = ordersList![index];
 
                       return Container(
                         padding: EdgeInsets.all(10),
@@ -114,15 +130,18 @@ class MyOrders extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
 
                                     children: [
-                                      Text(order.title, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
-
+                                      Text(order.restaurant?.name ?? "Food Item", style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
                                       SizedBox(height: 10),
 
                                       Row(
                                         children: [
-                                          Text(order.label, style: TextStyle(fontWeight: AppFontWeights.medium)),
+                                          Text(
+                                            vm.selectedTab == 0 ? "Est. delivery: " : "Ordered On: ",
+                                            style: TextStyle(fontWeight: AppFontWeights.medium),
+                                          ),
                                           SizedBox(width: 10),
-                                          Text(order.time),
+                                          // Convert the int? safely to a String without casting using .toString()
+                                          Text(vm.selectedTab == 0 ? "${order.estimatedTime ?? 30} mins" : (order.createdAt?.split('T').first ?? "")),
                                         ],
                                       ),
 
@@ -131,9 +150,14 @@ class MyOrders extends StatelessWidget {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text('Order Summary', style: TextStyle(fontWeight: AppFontWeights.medium)),
+                                          Text('Status', style: TextStyle(fontWeight: AppFontWeights.medium)),
                                           SizedBox(width: 10),
-                                          Expanded(child: Text(order.summary)),
+                                          Expanded(
+                                            child: Text(
+                                              order.orderStatus ?? 'Processing',
+                                              style: TextStyle(color: order.orderStatus == 'CANCELLED' ? Colors.red : Colors.green),
+                                            ),
+                                          ),
                                         ],
                                       ),
 
@@ -143,7 +167,7 @@ class MyOrders extends StatelessWidget {
                                         children: [
                                           Text('Total Price Paid', style: TextStyle(fontWeight: AppFontWeights.medium)),
                                           SizedBox(width: 10),
-                                          Text(order.price),
+                                          Text('₹${order.totalAmount?.toStringAsFixed(2) ?? '0.00'}'),
                                         ],
                                       ),
 
@@ -158,7 +182,9 @@ class MyOrders extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(orderId: order.sId)));
+                                    },
 
                                     style: OutlinedButton.styleFrom(
                                       fixedSize: Size.fromHeight(45),
@@ -167,7 +193,7 @@ class MyOrders extends StatelessWidget {
                                     ),
 
                                     child: Text(
-                                      order.button,
+                                      vm.selectedTab == 0 ? "Track Order" : "Reorder",
                                       style: TextStyle(color: Colors.black, fontWeight: AppFontWeights.bold, fontSize: 17),
                                     ),
                                   ),

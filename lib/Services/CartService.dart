@@ -11,21 +11,23 @@ class Cartservice {
   // Add To Cart API.
 
   Future<http.Response> addtoCart(AddToCartRequestModel addRequest) async {
-    final url = Const.BASE_URL + Const.ADD_TO_CART;
-    print('url $url,$addRequest');
+    final url = '${Const.BASE_URL}${Const.ADD_TO_CART}';
+    print('API Request URL: $url');
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString(Const.TOKEN_KEY);
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.TOKEN_KEY);
 
-    final headerValue = {'Content-Type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer $token'};
+    final headers = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
 
-    final response = await http.post(Uri.parse(url), headers: headerValue, body: jsonEncode(addRequest.toJson()));
-    print("$response");
+    final response = await http.post(Uri.parse(url), headers: headers, body: jsonEncode(addRequest.toJson()));
 
-    if (response.statusCode == 200) {
+    print("Response Code: ${response.statusCode}");
+    print("Response Body: ${response.body}");
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return response;
     } else {
-      throw Exception("API Error: ${response.statusCode}");
+      throw Exception("API Error: Status ${response.statusCode} - ${response.body}");
     }
   }
 
@@ -203,8 +205,8 @@ class Cartservice {
 
   // GetMyOrder API.
 
-  Future<Map<String, dynamic>?> getMyOrder() async {
-    final url = Const.BASE_URL + Const.GET_MY_ORDER;
+  Future<Map<String, dynamic>?> getMyOrder({String? type, int? page, int? limit}) async {
+    final url = Const.BASE_URL + Const.GET_MY_ORDER + "?type=$type&page=$page&limit=$limit";
     print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -219,6 +221,26 @@ class Cartservice {
       return jsonDecode(response.body);
     } else {
       print("order: ${response.statusCode}");
+      throw Exception("API Error: ${response.statusCode}");
+    }
+  }
+
+  // TrackOrder API.
+
+  Future<Map<String, dynamic>?> trackOrder(String orderId) async {
+    final baseUrl = Const.BASE_URL + Const.TRACK_ORDER;
+    final finalUri = Uri.parse(baseUrl).replace(queryParameters: {'id': orderId});
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString(Const.TOKEN_KEY);
+
+    final headerValue = {'Content-Type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer $token'};
+
+    final response = await http.get(finalUri, headers: headerValue);
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
       throw Exception("API Error: ${response.statusCode}");
     }
   }

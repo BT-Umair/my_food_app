@@ -179,7 +179,7 @@ Widget Shimmerrestaurant() {
                                       context: context,
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
-                                      builder: (_) => FoodDetailSheet(),
+                                      builder: (_) => FoodDetailSheet(itemData: null),
                                     );
                                   },
                                   child: Image.asset('assets/images/SouthIndian.png', fit: BoxFit.cover),

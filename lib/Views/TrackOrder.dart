@@ -3,11 +3,13 @@ import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
+import 'package:my_foodapp/ViewModels/MyOrdersViewModel.dart';
 import 'package:my_foodapp/Views/cancel_order.dart';
 import 'package:provider/provider.dart';
 
 class TrackOrder extends StatefulWidget {
-  const TrackOrder({super.key});
+  final String orderId;
+  const TrackOrder({super.key, required this.orderId});
 
   @override
   State<TrackOrder> createState() => _TrackOrderState();
@@ -15,10 +17,21 @@ class TrackOrder extends StatefulWidget {
 
 class _TrackOrderState extends State<TrackOrder> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<MyOrdersViewModel>().trackOrder(context, widget.orderId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final vm = context.watch<CartViewModel>();
     final vm1 = context.watch<MyAccountViewModel>();
     final vm2 = context.watch<HomeViewModel>();
+    final vm3 = context.watch<MyOrdersViewModel>();
+    final orderData = vm3.trackOrderResponseModel.data;
     return Scaffold(
       appBar: AppBar(
         actions: [Icon(Icons.more_vert_outlined)],
@@ -78,7 +91,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   Text('Estimated Time'),
                   Spacer(),
                   Text(
-                    vm.getMyOrderResponseModel.data?.orders?.first.estimatedTime?.toString() ?? '',
+                    '${orderData?.estimatedTime ?? ""} mins',
+
                     style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
                   ),
                 ],
@@ -111,7 +125,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             Image.asset('assets/images/greenlocation.png'),
                             SizedBox(width: 10),
                             Text(
-                              'Your Order has been Delivered',
+                              orderData?.orderStatus ?? "",
                               style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.large, color: Color.fromRGBO(54, 58, 51, 1)),
                             ),
                           ],

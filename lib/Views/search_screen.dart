@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_foodapp/Utils/constants.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/SearchScreenViewModel.dart';
 import 'package:my_foodapp/Views/Shimmer/search_shimmer.dart';
@@ -209,12 +208,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0), color: Colors.white),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(12),
-                                        child: Image.network(
-                                          '${Const.CATEGORYIMAGE_URL}${Category.categoryImage}',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.cover,
-                                        ),
+                                        child: Image.network('${Category.categoryImage}', width: 60, height: 60, fit: BoxFit.cover),
                                       ),
                                     ),
 
@@ -258,7 +252,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       if (vm.getAllMenuItemsResponseModel.data?.items != null)
                         SizedBox(
-                          height: 240,
+                          height: 290,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: vm.getAllMenuItemsResponseModel.data!.items!.length,
@@ -280,17 +274,29 @@ class _SearchScreenState extends State<SearchScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Stack(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadiusGeometry.circular(15),
-                                            child: Image.network('${Const.MENUIMAGE_URL}${menu.image}', fit: BoxFit.cover),
-                                          ),
+                                      SizedBox(
+                                        height: 110,
+                                        width: double.infinity,
+                                        child: Stack(
+                                          children: [
+                                            Positioned.fill(
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadiusGeometry.circular(10),
+                                                child: Image.network('${menu.image}', fit: BoxFit.cover),
+                                              ),
+                                            ),
 
-                                          Align(alignment: Alignment.centerRight, child: Image.asset('assets/images/like (1).png', width: 40)),
-                                        ],
+                                            Align(
+                                              alignment: Alignment.topRight,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(3.0),
+                                                child: Image.asset('assets/images/like (1).png', width: 32),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
 
                                       Row(
@@ -396,7 +402,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             );
                                           },
 
-                                          child: Image.network('${Const.IMAGE_URL}$imageFilename'),
+                                          child: Image.network('$imageFilename'),
                                         ),
                                       ),
                                       SizedBox(height: 10),

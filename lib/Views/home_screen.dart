@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:my_foodapp/Utils/constants.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
@@ -176,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Text(
                                     'What’s on your mind',
-                                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                                    style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                                   ),
                                   SizedBox(width: 20),
                                   Spacer(),
@@ -214,12 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                                 child: ClipRRect(
                                                   borderRadius: BorderRadius.circular(12),
-                                                  child: Image.network(
-                                                    '${Const.CATEGORYIMAGE_URL}${Category.categoryImage}',
-                                                    width: 60,
-                                                    height: 60,
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                                  child: Image.network('${Category.categoryImage}', width: 60, height: 60, fit: BoxFit.cover),
                                                 ),
                                               ),
                                               SizedBox(
@@ -282,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                               Text(
                                 'Top 2190 restaurant to explore',
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                                style: TextStyle(fontSize: AppFontSize.medium, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                               ),
 
                               SizedBox(height: 20),
@@ -352,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 final imageFilename = restaurant.image![itemIndex];
                                                                 return SizedBox(
                                                                   width: double.infinity,
-                                                                  child: Image.network('${Const.IMAGE_URL}$imageFilename', fit: BoxFit.cover),
+                                                                  child: Image.network('$imageFilename', fit: BoxFit.cover),
                                                                 );
                                                               },
                                                             ),
@@ -407,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   left: 50,
                                                   child: Text(
                                                     "Pure Veg Food",
-                                                    style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                                                    style: TextStyle(fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                                                   ),
                                                 ),
 
@@ -420,13 +414,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       SizedBox(width: 8),
                                                       Text(
                                                         "Flat ₹80 OFF above ₹199",
-                                                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.primaryWhite),
+                                                        style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight: AppFontWeights.bold,
+                                                          color: AppColors.primaryWhite,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
                                                 ),
 
-                                                Positioned(top: 0, right: 0, child: Image.asset('assets/images/save.png', width: 50)),
+                                                Positioned(
+                                                  top: 0,
+                                                  right: 0,
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      await context.read<HomeViewModel>().toggleSaveRestaurant(context, restaurant.sId ?? "");
+                                                    },
+                                                    child: Image.asset('assets/images/save.png', width: 50),
+                                                  ),
+                                                ),
                                               ],
                                             ),
 
@@ -439,7 +446,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   Expanded(
                                                     child: Text(
                                                       restaurant.name!,
-                                                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: AppColors.primaryBlack),
+                                                      style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                                                     ),
                                                   ),
 
