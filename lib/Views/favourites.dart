@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/constants.dart';
+import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/RestaurantDetailViewModel.dart';
 import 'package:my_foodapp/Views/Shimmer/favourites_shimmer.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,7 @@ class _FavouritesState extends State<Favourites> {
         final fav = vm.myWishListResponseModel.data;
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: AppColors.primaryWhite,
             leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
             title: const Text(
               'Favourites',

@@ -96,7 +96,7 @@ class _FoodDetailSheetState extends State<FoodDetailSheet> {
 
                       SizedBox(height: 8),
 
-                      Text(currentItem?.price?.toString() ?? "0", style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large)),
+                      Text("₹${currentItem?.price?.toString() ?? "0"}", style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.large)),
 
                       SizedBox(height: 8),
 

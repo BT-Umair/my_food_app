@@ -12,7 +12,8 @@ class RestaurantDetail extends StatefulWidget {
   final String? restname;
   final String? restadd;
   final String? restrat;
-  const RestaurantDetail({super.key, this.restaurantId, this.restname, this.restadd, this.restrat});
+  final String? restImage;
+  const RestaurantDetail({super.key, this.restaurantId, this.restname, this.restadd, this.restrat, this.restImage});
 
   @override
   State<RestaurantDetail> createState() => _RestaurantDetailState();
@@ -49,7 +50,10 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                   Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
-                      Image.asset('assets/images/restaurant.png', width: double.infinity, fit: BoxFit.cover),
+                      ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(12),
+                        child: Image.network(widget.restImage ?? '', width: double.infinity, height: 300, fit: BoxFit.cover),
+                      ),
                       Positioned(
                         top: 20,
                         left: 10,
@@ -130,7 +134,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                       ],
                     ),
                   ),
-                  Divider(height: 5),
+                  Divider(thickness: 4),
                   SizedBox(height: 10),
 
                   SizedBox(
@@ -184,74 +188,78 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                         final menu = vm.getMenuItemsResponseModel.data!.getData![index];
 
                         return Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(5),
                           child: Container(
-                            width: 160,
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(color: Color(0x12000000)),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Stack(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                            context: context,
-                                            isScrollControlled: true,
-                                            backgroundColor: Colors.transparent,
-                                            builder: (_) => FoodDetailSheet(itemData: menu),
-                                          );
-                                        },
-                                        child: Image.network('${menu.image}', fit: BoxFit.cover),
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      Positioned.fill(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                isScrollControlled: true,
+                                                backgroundColor: Colors.transparent,
+                                                builder: (_) => FoodDetailSheet(itemData: menu),
+                                              );
+                                            },
+                                            child: Image.network('${menu.image}', fit: BoxFit.cover),
+                                          ),
+                                        ),
                                       ),
-                                    ),
 
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          setState(() {
-                                            isLiked = !isLiked;
-                                          });
-                                          bool success = await context.read<RestaurantDetailViewModel>().toggleWishlist(context, menu.sId ?? "");
-                                          if (!success) {
+                                      Positioned(
+                                        top: 5,
+                                        right: 5,
+                                        child: InkWell(
+                                          onTap: () async {
                                             setState(() {
                                               isLiked = !isLiked;
                                             });
-                                          }
-                                        },
+                                            bool success = await context.read<RestaurantDetailViewModel>().toggleWishlist(context, menu.sId ?? "");
+                                            if (!success) {
+                                              setState(() {
+                                                isLiked = !isLiked;
+                                              });
+                                            }
+                                          },
 
-                                        child: Image.asset(
-                                          'assets/images/like (1).png',
-                                          width: 40,
-                                          color: isLiked ? Colors.red : null,
-                                          colorBlendMode: isLiked ? BlendMode.srcIn : null,
+                                          child: Image.asset(
+                                            'assets/images/like (1).png',
+                                            width: 40,
+                                            color: isLiked ? Colors.red : null,
+                                            colorBlendMode: isLiked ? BlendMode.srcIn : null,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Image.asset('assets/images/Frame 2.png'),
-                                    Spacer(),
+                                    const Spacer(),
                                     Icon(Icons.star, color: Color.fromRGBO(94, 173, 29, 1)),
-                                    Text(menu.rating!.toString(), style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.regular)),
+                                    Text(menu.rating?.toString() ?? "0.0", style: TextStyle(fontSize: 12, fontWeight: AppFontWeights.regular)),
                                   ],
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      menu.name!,
+                                      menu.name ?? "Dish",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                       style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                                     ),
                                   ],
@@ -259,7 +267,7 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                 Row(
                                   children: [
                                     Text(
-                                      menu.price!.toString(),
+                                      "₹${menu.price ?? 0}",
                                       style: TextStyle(
                                         fontSize: AppFontSize.medium,
                                         fontWeight: AppFontWeights.regular,
@@ -268,21 +276,23 @@ class _RestaurantDetailState extends State<RestaurantDetail> {
                                     ),
                                     Spacer(),
                                     OutlinedButton(
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                            context: context,
-                                            isScrollControlled: true,
-                                            backgroundColor: Colors.transparent,
-                                            builder: (_) => CustomizeSheet(itemData: menu),
-                                          );
-                                        },
-                                        child: Text(
-                                          "ADD",
-                                          style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.medium, color: AppColors.primaryGreen),
-                                        ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          builder: (_) => CustomizeSheet(itemData: menu),
+                                        );
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        fixedSize: const Size(85, 30),
+                                        side: BorderSide(color: AppColors.primaryGreen, width: 1.0),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                      child: Text(
+                                        "ADD",
+                                        style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.bold, color: AppColors.primaryGreen),
                                       ),
                                     ),
                                   ],

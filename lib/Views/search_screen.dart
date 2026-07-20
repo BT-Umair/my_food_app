@@ -42,8 +42,8 @@ class _SearchScreenState extends State<SearchScreen> {
       builder: (context, vm, child) {
         final category = vm.getAllCategoryResponseModel.data;
         return Scaffold(
-          backgroundColor: AppColors.primaryWhite,
           appBar: AppBar(
+            backgroundColor: AppColors.primaryWhite,
             leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
             title: Text(
               'Search',
@@ -323,16 +323,25 @@ class _SearchScreenState extends State<SearchScreen> {
                                             style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                           ),
                                           Spacer(),
-                                          OutlinedButton(
-                                            onPressed: () {},
-                                            style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                              padding: EdgeInsets.symmetric(vertical: 10),
-                                            ),
+                                          InkWell(
+                                            onTap: () {
+                                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomizeSheet(itemData: itemData)));
+                                            },
+                                            child: OutlinedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                                padding: EdgeInsets.symmetric(vertical: 10),
+                                              ),
 
-                                            child: Text(
-                                              "ADD",
-                                              style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.large, color: Color.fromRGBO(84, 163, 18, 1)),
+                                              child: Text(
+                                                "ADD",
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: AppFontWeights.large,
+                                                  color: Color.fromRGBO(84, 163, 18, 1),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],

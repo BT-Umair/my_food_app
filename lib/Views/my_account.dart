@@ -114,8 +114,7 @@ class _MyAccountState extends State<MyAccount> {
               onChanged: vm.setGender,
             ),
 
-            SizedBox(height: 20),
-
+            Spacer(),
             Center(
               child: SizedBox(
                 width: 290,
@@ -129,7 +128,7 @@ class _MyAccountState extends State<MyAccount> {
                   onPressed: () => vm.saveProfile(context),
                   child: Text(
                     'Save',
-                    style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.primaryWhite),
+                    style: TextStyle(fontSize: 17, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                   ),
                 ),
               ),

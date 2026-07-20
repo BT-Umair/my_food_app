@@ -34,6 +34,7 @@ class _ViewCouponBodyState extends State<_ViewCouponBody> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         title: const Text("Coupon Code"),
         centerTitle: true,
         actions: [

@@ -12,6 +12,7 @@ class CancelOrder extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         actions: [Icon(Icons.more_vert_outlined)],
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
@@ -64,7 +65,7 @@ class CancelOrder extends StatelessWidget {
                         ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: AppColors.primaryWhite, strokeWidth: 2))
                         : Text(
                             'Submit',
-                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.primaryWhite),
+                            style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.bold, color: AppColors.primaryWhite),
                           ),
                   ),
                 ),

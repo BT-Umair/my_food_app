@@ -30,6 +30,7 @@ class _SavedBymeState extends State<SavedByme> {
         final save = vm.savedRestaurantResponseModel.data;
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: AppColors.primaryWhite,
             leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
             title: Text(
               'Saved By Me',

@@ -23,7 +23,6 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
   Widget build(BuildContext context) {
     return Consumer<RestaurantDetailViewModel>(
       builder: (context, vm, child) {
-        final menu = vm.getMenuItemsResponseModel.data!.getData!;
         final customizationsList = widget.itemData.customizations ?? [];
         return Stack(
           clipBehavior: Clip.none,
@@ -51,7 +50,10 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                               padding: EdgeInsets.all(10),
                               child: Row(
                                 children: [
-                                  Image.asset('assets/images/Dosa.png'),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(widget.itemData.image ?? '', width: 60, height: 60, fit: BoxFit.cover),
+                                  ),
                                   SizedBox(width: 10),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,

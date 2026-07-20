@@ -293,6 +293,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     final hasMultipleImages = restaurant.image != null && restaurant.image!.length > 1;
                                     return InkWell(
                                       onTap: () {
+                                        // Check karein ki image list khali toh nahi hai
+                                        String? firstImage = (restaurant.image != null && restaurant.image!.isNotEmpty) ? restaurant.image![0] : null;
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -301,6 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               restname: restaurant.name,
                                               restadd: restaurant.address,
                                               restrat: restaurant.rating.toString(),
+                                              restImage: firstImage,
                                             ),
                                           ),
                                         );

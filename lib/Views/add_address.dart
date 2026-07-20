@@ -13,6 +13,7 @@ class AddAddress extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

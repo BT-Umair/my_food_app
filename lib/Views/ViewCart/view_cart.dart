@@ -46,13 +46,14 @@ class _ViewCartState extends State<ViewCart> {
 
               Row(
                 children: [
-                  InkWell(
-                    onTap: () {
+                  IconButton(
+                    icon: Image.asset('assets/images/Back (2).png'),
+                    onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Image.asset('assets/images/Back (2).png'),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 10),
+
                   Text(
                     vm.getAllCartResponseModel.data?.restaurant?.name ?? "",
                     style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
@@ -114,7 +115,10 @@ class _ViewCartState extends State<ViewCart> {
 
                                     setState(() {});
                                   } else {
-                                    // await vm.removeCart(context, cart.sId);
+                                    // Agar quantity exact 1 hai (ya kisi wajah se 1 se kam), toh cart se remove karein
+                                    await vm.removeCart(context, cart.sId);
+                                    await vm.getAllCart(context);
+                                    setState(() {});
                                   }
                                 },
                                 child: const Padding(

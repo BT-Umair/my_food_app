@@ -20,6 +20,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
     final vm = context.watch<CartViewModel>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'Payment Method',
@@ -268,10 +269,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     String paymentMethodString = (_selectedValue == 1) ? 'cod' : 'online';
                     print("paymentmethod $paymentMethodString");
 
-                    bool isSuccess = await Provider.of<CartViewModel>(context, listen: false).placeOrder(
+                    bool isSuccess = await Provider.of<CartViewModel>(context, listen: false).submitOrder(
                       context: context,
                       paymentmethod: paymentMethodString,
                       deliveryAddress: 'Sector 62 Noida',
+                      addressId: '65a1b2c3d4e5f6g7h8i9j0k1',
                       latitude: 28.627,
                       longitude: 77.3649,
                     );

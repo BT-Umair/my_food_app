@@ -29,8 +29,8 @@ class _AddressState extends State<Address> {
     final addAddressVm = Provider.of<AddAddressViewModel>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'Address',

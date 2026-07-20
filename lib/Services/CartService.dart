@@ -16,7 +16,7 @@ class Cartservice {
 
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.TOKEN_KEY);
-
+    // Yeh server ko bata raha hai ki jo data hum bhej rahe hain, wo JSON format mai hai.
     final headers = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
 
     final response = await http.post(Uri.parse(url), headers: headers, body: jsonEncode(addRequest.toJson()));
@@ -91,7 +91,7 @@ class Cartservice {
     final bodyValue = jsonEncode({'cart_item_id': id});
     print("API Body sent: $bodyValue");
 
-    final response = await http.delete(url, headers: headerValue, body: bodyValue);
+    final response = await http.post(url, headers: headerValue, body: bodyValue);
 
     print("API Status Code: ${response.statusCode}");
     print("API Response Body: ${response.body}");

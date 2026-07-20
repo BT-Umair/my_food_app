@@ -17,6 +17,7 @@ class _OrderPlaceState extends State<OrderPlace> {
     final vm = context.watch<CartViewModel>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         leading: IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.pop(context)),
       ),
 
@@ -94,12 +95,12 @@ class _OrderPlaceState extends State<OrderPlace> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryGreen,
                         foregroundColor: AppColors.primaryGreen,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
 
                       child: Text(
                         "Track Order",
-                        style: TextStyle(fontWeight: AppFontWeights.medium, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
+                        style: TextStyle(fontWeight: AppFontWeights.bold, fontSize: AppFontSize.medium, color: AppColors.primaryWhite),
                       ),
                     ),
                   ),

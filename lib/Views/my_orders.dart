@@ -27,6 +27,7 @@ class _MyOrderState extends State<MyOrders> {
     final ordersList = vm.getMyOrderResponseModel?.data?.orders;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context)),
 
         title: Text('My Orders', style: TextStyle(fontSize: 18, fontWeight: AppFontWeights.bold)),
@@ -49,44 +50,50 @@ class _MyOrderState extends State<MyOrders> {
                 Row(
                   children: [
                     Expanded(
-                      child: InkWell(
-                        onTap: () async {
-                          context.read<MyOrdersViewModel>().getMyOrder(context, type: 'current', page: 1, limit: 20);
-                          vm.changeTab(0, context);
-                        },
+                      child: ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(10),
+                        child: InkWell(
+                          onTap: () async {
+                            context.read<MyOrdersViewModel>().getMyOrder(context, type: 'current', page: 1, limit: 20);
+                            vm.changeTab(0, context);
+                          },
 
-                        child: Container(
-                          padding: EdgeInsets.all(15),
+                          child: Container(
+                            padding: EdgeInsets.all(15),
 
-                          color: vm.selectedTab == 0 ? Colors.green : Colors.white,
+                            color: vm.selectedTab == 0 ? Colors.green : Colors.white,
 
-                          child: Text(
-                            'Current',
-                            textAlign: TextAlign.center,
+                            child: Text(
+                              'Current',
+                              textAlign: TextAlign.center,
 
-                            style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 0 ? Colors.white : Colors.black),
+                              style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 0 ? Colors.white : Colors.black),
+                            ),
                           ),
                         ),
                       ),
                     ),
 
                     Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          context.read<MyOrdersViewModel>().getMyOrder(context, type: 'previous', page: 1, limit: 20);
-                          vm.changeTab(1, context);
-                        },
+                      child: ClipRRect(
+                        borderRadius: BorderRadiusGeometry.circular(10),
+                        child: InkWell(
+                          onTap: () {
+                            context.read<MyOrdersViewModel>().getMyOrder(context, type: 'previous', page: 1, limit: 20);
+                            vm.changeTab(1, context);
+                          },
 
-                        child: Container(
-                          padding: EdgeInsets.all(15),
+                          child: Container(
+                            padding: EdgeInsets.all(15),
 
-                          color: vm.selectedTab == 1 ? Colors.green : Colors.white,
+                            color: vm.selectedTab == 1 ? Colors.green : Colors.white,
 
-                          child: Text(
-                            'Previous',
-                            textAlign: TextAlign.center,
+                            child: Text(
+                              'Previous',
+                              textAlign: TextAlign.center,
 
-                            style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 1 ? Colors.white : Colors.black),
+                              style: TextStyle(fontWeight: AppFontWeights.large, color: vm.selectedTab == 1 ? Colors.white : Colors.black),
+                            ),
                           ),
                         ),
                       ),

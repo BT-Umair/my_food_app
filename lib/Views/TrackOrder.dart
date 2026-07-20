@@ -34,6 +34,7 @@ class _TrackOrderState extends State<TrackOrder> {
     final orderData = vm3.trackOrderResponseModel.data;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryWhite,
         actions: [Icon(Icons.more_vert_outlined)],
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
         title: RichText(

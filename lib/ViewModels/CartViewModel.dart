@@ -82,7 +82,7 @@ class CartViewModel extends ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid Cart ID")));
       return false;
     }
-    var isLoading = true;
+    isLoading = true;
     notifyListeners();
 
     try {
@@ -98,6 +98,7 @@ class CartViewModel extends ChangeNotifier {
         return false;
       }
     } catch (e) {
+      print("Error inside ViewModel removeCart: $e");
       return false;
     } finally {
       isLoading = false;
@@ -163,10 +164,11 @@ class CartViewModel extends ChangeNotifier {
 
   //  PLACEORDER API.
 
-  Future<bool> placeOrder({
+  Future<bool> submitOrder({
     required BuildContext context,
     required String paymentmethod,
     required String deliveryAddress,
+    required String addressId,
     double? latitude,
     double? longitude,
   }) async {
@@ -175,7 +177,11 @@ class CartViewModel extends ChangeNotifier {
 
     try {
       DeliveryAddress addressObject = DeliveryAddress(address: deliveryAddress, lat: latitude, lng: longitude);
-      PlaceOrderRequestModel placeOrderRequestModel = PlaceOrderRequestModel(paymentMethod: paymentmethod, deliveryAddress: addressObject);
+      PlaceOrderRequestModel placeOrderRequestModel = PlaceOrderRequestModel(
+        paymentMethod: paymentmethod,
+        deliveryAddress: addressObject,
+        addressId: addressId,
+      );
 
       final responseModel = await _cartservice.placeOrder(placeOrderRequestModel);
 

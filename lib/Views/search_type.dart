@@ -31,6 +31,7 @@ class _SearchTypeState extends State<SearchType> {
       builder: (context, vm, child) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: AppColors.primaryWhite,
             leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.of(context).pop()),
             title: Text(
               'Search',
@@ -170,7 +171,10 @@ class _SearchTypeState extends State<SearchType> {
 
                               child: Row(
                                 children: [
-                                  Image.asset('assets/images/Rectangle 4313.png'),
+                                  ClipRRect(
+                                    borderRadius: BorderRadiusGeometry.circular(10),
+                                    child: Image.network(menu.image ?? "", width: 60, height: 60, fit: BoxFit.cover),
+                                  ),
                                   SizedBox(width: 10),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,6 +189,7 @@ class _SearchTypeState extends State<SearchType> {
                                               style: TextStyle(fontSize: 13, fontWeight: AppFontWeights.regular, color: AppColors.darkCharcoal),
                                               children: [
                                                 TextSpan(text: menu.rating!.toString()),
+
                                                 TextSpan(text: ' 20 - 25 Min | '),
                                                 TextSpan(text: menu.mealtype),
                                               ],
