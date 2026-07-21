@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/ProfileViewModel.dart';
 import 'package:my_foodapp/ViewModels/ThemeProviderViewModel.dart';
+import 'package:my_foodapp/Views/ViewCart/payment_mode.dart';
 import 'package:my_foodapp/Views/address.dart';
 import 'package:my_foodapp/Views/favourites.dart';
 import 'package:my_foodapp/Views/my_account.dart';
@@ -157,17 +158,22 @@ class _ProfileState extends State<Profile> {
                     ),
 
                     SizedBox(height: 25),
-                    Row(
-                      children: [
-                        Image.asset('assets/images/Credit Card.png'),
-                        SizedBox(width: 10),
-                        Text(
-                          'Payment Mode',
-                          style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentMode()));
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset('assets/images/Credit Card.png'),
+                          SizedBox(width: 10),
+                          Text(
+                            'Payment Mode',
+                            style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.regular, color: Color.fromRGBO(54, 58, 51, 1)),
+                          ),
+                          Spacer(),
+                          Icon(Icons.arrow_forward_ios_sharp, size: 20, color: AppColors.greenish),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 25),
                     InkWell(

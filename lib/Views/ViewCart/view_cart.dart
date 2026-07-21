@@ -56,7 +56,7 @@ class _ViewCartState extends State<ViewCart> {
 
                   Text(
                     vm.getAllCartResponseModel.data?.restaurant?.name ?? "",
-                    style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.medium, color: AppColors.primaryBlack),
+                    style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold, color: AppColors.primaryBlack),
                   ),
                 ],
               ),
@@ -77,20 +77,28 @@ class _ViewCartState extends State<ViewCart> {
               if (vm.getAllCartResponseModel.data?.items != null)
                 ListView.separated(
                   shrinkWrap: true,
-                  itemCount: vm.getAllCartResponseModel.data!.items!.length,
+                  itemCount: vm.getAllCartResponseModel.data?.items?.length ?? 0,
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   itemBuilder: (_, index) {
                     final cart = vm.getAllCartResponseModel.data!.items![index];
                     return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset('assets/images/Dosa.png'),
+                        SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset("assets/images/Dosa.png", fit: BoxFit.cover),
+                          ),
+                        ),
                         SizedBox(width: 10),
 
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(cart.name!, style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
+                              Text(cart.name ?? "", style: TextStyle(fontSize: 15, fontWeight: AppFontWeights.bold)),
                               SizedBox(width: 10),
                             ],
                           ),
@@ -115,7 +123,7 @@ class _ViewCartState extends State<ViewCart> {
 
                                     setState(() {});
                                   } else {
-                                    // Agar quantity exact 1 hai (ya kisi wajah se 1 se kam), toh cart se remove karein
+                                    // Agar quantity exact 1 hai ya kisi wajah se 1 se kam,toh cart se remove kardiya.
                                     await vm.removeCart(context, cart.sId);
                                     await vm.getAllCart(context);
                                     setState(() {});
@@ -128,7 +136,7 @@ class _ViewCartState extends State<ViewCart> {
                               ),
 
                               SizedBox(width: 10),
-                              Text(cart.quantity.toString()),
+                              Text((cart.quantity ?? 1).toString()),
                               SizedBox(width: 10),
                               GestureDetector(
                                 onTap: () async {
@@ -238,6 +246,8 @@ class _ViewCartState extends State<ViewCart> {
                     _row('Delivery Fee', (vm.getAllCartResponseModel.data?.deliveryFee ?? 0).toString()),
                     SizedBox(height: 5),
                     _row('Extra Discount', (vm.getAllCartResponseModel.data?.discount ?? 0).toString()),
+                    SizedBox(height: 5),
+                    _row('PlatForm Fees', (vm.getAllCartResponseModel.data?.platformFee ?? 0).toString()),
                     SizedBox(height: 5),
                     _row('GST & Other Charges', (vm.getAllCartResponseModel.data?.gstAndCharges?.toString() ?? "0.0")),
 

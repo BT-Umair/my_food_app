@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
+import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/ViewModels/CouponViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -47,6 +48,9 @@ class _ViewCouponBodyState extends State<_ViewCouponBody> {
                   bool isApplied = await vm.applyCouponCode(context, selectedCode);
                   setState(() {});
                   if (isApplied && context.mounted) {
+                    // CRITICAL FIX: Back jaane se pehle Cart ka data refresh kiya
+                    // Isse View Cart screen par naya amount turant dikhega
+                    await context.read<CartViewModel>().getAllCart(context);
                     Navigator.pop(context, selectedCode);
                   }
                 }

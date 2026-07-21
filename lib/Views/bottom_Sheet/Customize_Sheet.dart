@@ -24,6 +24,10 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
     return Consumer<RestaurantDetailViewModel>(
       builder: (context, vm, child) {
         final customizationsList = widget.itemData.customizations ?? [];
+        int totalItemPrice = widget.itemData.price ?? 0;
+        selectedValues.forEach((outerIdx, innerIdx) {
+          totalItemPrice += customizationsList[outerIdx].options![innerIdx].price ?? 0;
+        });
         return Stack(
           clipBehavior: Clip.none,
           children: [
@@ -222,7 +226,7 @@ class _CustomizeSheetState extends State<CustomizeSheet> {
                               child: vm.isLoading
                                   ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                                   : Text(
-                                      'Add To Cart - ₹${((widget.itemData.price ?? 0) * itemQuantity)}',
+                                      'Add To Cart - ₹${totalItemPrice * itemQuantity}',
                                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
                                     ),
                             ),

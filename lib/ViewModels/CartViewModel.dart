@@ -51,7 +51,7 @@ class CartViewModel extends ChangeNotifier {
   //  Get AllCart API.
 
   Future<bool> getAllCart(BuildContext context) async {
-    var isLoading = true;
+    isLoading = true;
     notifyListeners();
 
     try {
@@ -139,7 +139,7 @@ class CartViewModel extends ChangeNotifier {
   //  RemoveCoupon FromCart API.
 
   Future<bool> removeCouponFromCart(BuildContext context, String code) async {
-    var isLoading = true;
+    isLoading = true;
     notifyListeners();
 
     try {

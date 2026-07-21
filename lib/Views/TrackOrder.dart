@@ -5,6 +5,7 @@ import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyOrdersViewModel.dart';
 import 'package:my_foodapp/Views/cancel_order.dart';
+import 'package:my_foodapp/Views/chat_screen.dart';
 import 'package:provider/provider.dart';
 
 class TrackOrder extends StatefulWidget {
@@ -76,7 +77,18 @@ class _TrackOrderState extends State<TrackOrder> {
                     ],
                   ),
                   Spacer(),
-                  Image.asset('assets/images/Action Icon.png'),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const SimpleChatScreen(currentUserId: "USER_123", receiverName: "Amit Kumar (Rider)", orderId: "ORD98765"),
+                        ),
+                      );
+                    },
+                    child: Image.asset('assets/images/Action Icon.png'),
+                  ),
                   SizedBox(width: 5),
                   Image.asset('assets/images/Action Icon (1).png'),
                 ],
