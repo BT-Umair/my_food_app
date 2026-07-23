@@ -63,13 +63,12 @@ class Login extends StatelessWidget {
                               child: Image.asset('assets/images/Calling.png', width: 20, height: 20, fit: BoxFit.fill),
                             ),
 
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             hintText: 'Enter your phone number',
                             labelText: 'Phone Number',
                             errorText: vm.phoneError,
                           ),
                         ),
-                        Text('Forgot Password?', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                         SizedBox(height: 10),
                         Center(
                           child: SizedBox(
@@ -81,9 +80,9 @@ class Login extends StatelessWidget {
                                 if (await vm.login(context)) {}
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primaryGreen,
+                                backgroundColor: Color.fromRGBO(94, 173, 29, 1),
                                 foregroundColor: AppColors.primaryGreen,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               ),
 
                               child: vm.isLoading
@@ -113,7 +112,10 @@ class Login extends StatelessWidget {
                                 "Login With Google",
                                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(18, 13, 38, 1)),
                               ),
-                              style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                backgroundColor: AppColors.primaryWhite,
+                              ),
                             ),
                           ),
                         ),
@@ -131,7 +133,10 @@ class Login extends StatelessWidget {
                                 "Login With Facebook",
                                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color.fromRGBO(18, 13, 38, 1)),
                               ),
-                              style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10))),
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                backgroundColor: AppColors.primaryWhite,
+                              ),
                             ),
                           ),
                         ),

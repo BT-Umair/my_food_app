@@ -31,9 +31,9 @@ class Data {
   int? platformFee;
   int? packingCharge;
   int? discount;
-  double? gstRate;
-  double? gstAndCharges;
-  double? totalAmount;
+  num? gstRate; //Double ko BADAL kar NUM kar diya taaki dono int/double support karein
+  num? gstAndCharges;
+  num? totalAmount;
   String? couponCode;
   int? distanceKm;
   bool? isSurge;
@@ -74,9 +74,9 @@ class Data {
     platformFee = json['platformFee'];
     packingCharge = json['packingCharge'];
     discount = json['discount'];
-    gstRate = json['gstRate'];
-    gstAndCharges = json['gstAndCharges'];
-    totalAmount = json['totalAmount'];
+    gstRate = json['gstRate'] != null ? num.parse(json['gstRate'].toString()) : null;
+    gstAndCharges = json['gstAndCharges'] != null ? num.parse(json['gstAndCharges'].toString()) : null;
+    totalAmount = json['totalAmount'] != null ? num.parse(json['totalAmount'].toString()) : null;
     couponCode = json['couponCode'];
     distanceKm = json['distanceKm'];
     isSurge = json['isSurge'];

@@ -395,7 +395,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       ClipRRect(
-                                        borderRadius: BorderRadiusGeometry.circular(15),
+                                        borderRadius: BorderRadius.circular(15),
                                         child: GestureDetector(
                                           onTap: () {
                                             Navigator.push(
@@ -406,6 +406,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   restadd: restaurant.address,
                                                   restname: restaurant.name,
                                                   restrat: restaurant.rating.toString(),
+                                                  restImage: imageFilename,
                                                 ),
                                               ),
                                             );

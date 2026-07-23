@@ -18,6 +18,7 @@ class ViewCart extends StatefulWidget {
 }
 
 class _ViewCartState extends State<ViewCart> {
+  bool _isCartLoading = false;
   @override
   void initState() {
     super.initState();
@@ -47,7 +48,7 @@ class _ViewCartState extends State<ViewCart> {
               Row(
                 children: [
                   IconButton(
-                    icon: Image.asset('assets/images/Back (2).png'),
+                    icon: Image.asset(AppImage.back),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -110,51 +111,99 @@ class _ViewCartState extends State<ViewCart> {
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  int currentQuantity = cart.quantity ?? 1;
-
-                                  if (currentQuantity > 1) {
-                                    int newQuantity = currentQuantity - 1;
-                                    await vm.updateCart(context, cart.sId, newQuantity);
-                                    await vm.getAllCart(context);
-
-                                    setState(() {});
-                                  } else {
-                                    // Agar quantity exact 1 hai ya kisi wajah se 1 se kam,toh cart se remove kardiya.
-                                    await vm.removeCart(context, cart.sId);
-                                    await vm.getAllCart(context);
-                                    setState(() {});
-                                  }
-                                },
-                                child: const Padding(
+                          child: _isCartLoading
+                              ? const Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text('-', style: TextStyle(fontSize: 20, fontWeight: AppFontWeights.bold)),
+                                  child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                                )
+                              : Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () async {
+                                        setState(() => _isCartLoading = true);
+                                        int currentQuantity = cart.quantity ?? 1;
+
+                                        try {
+                                          if (currentQuantity > 1) {
+                                            int newQuantity = currentQuantity - 1;
+                                            await vm.updateCart(context, cart.sId, newQuantity);
+                                            await vm.getAllCart(context);
+
+                                            setState(() {
+                                              _isCartLoading = false;
+                                            });
+                                          } else {
+                                            // Agar quantity exact 1 hai ya kisi wajah se 1 se kam,toh cart se remove kardiya.
+                                            await vm.removeCart(context, cart.sId);
+                                            await vm.getAllCart(context);
+                                            final updatedCartData = vm.getAllCartResponseModel.data;
+
+                                            if (updatedCartData == null || updatedCartData.items == null || updatedCartData.items!.isEmpty) {
+                                              // mounted check se app crash nahi hoga agar user back chala jaye
+                                              if (mounted) {
+                                                setState(() {
+                                                  _isCartLoading = false;
+                                                });
+                                                Navigator.pop(context);
+                                              }
+                                              return;
+                                            }
+                                          }
+                                        } catch (e) {
+                                          debugPrint("Error handling minus click: $e");
+                                        } finally {
+                                          if (mounted && _isCartLoading) {
+                                            setState(() {
+                                              _isCartLoading = false;
+                                            });
+                                          }
+                                        }
+                                      },
+
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text('-', style: TextStyle(fontSize: 20, fontWeight: AppFontWeights.bold)),
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 10),
+                                    Text((cart.quantity ?? 1).toString()),
+                                    SizedBox(width: 10),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        if (_isCartLoading) return;
+                                        setState(() => _isCartLoading = true);
+                                        // 1. Current quantity nikalein aur usme 1 plus karein
+                                        int currentQuantity = cart.quantity ?? 1;
+                                        int newQuantity = currentQuantity + 1;
+
+                                        try {
+                                          // 2. addToCart ki jagah updateCart API call karein taaki database me usi item ki quantity badhe
+                                          await vm.updateCart(context, cart.sId, newQuantity);
+
+                                          // vm.incrementQty();
+                                          // await vm1.addToCart(
+                                          //   context: context,
+                                          //   menuId: cart.menuId ?? "",
+                                          //   restaurantId: cart.restaurantId ?? "",
+                                          //   quantity: 1,
+                                          // );
+                                          await vm.getAllCart(context);
+                                        } catch (e) {
+                                          debugPrint("Error handling plus click: $e");
+                                        } finally {
+                                          if (mounted) {
+                                            setState(() {
+                                              _isCartLoading = false;
+                                            });
+                                          }
+                                        }
+                                      },
+
+                                      child: const Text('+', style: TextStyle(fontSize: 20)),
+                                    ),
+                                  ],
                                 ),
-                              ),
-
-                              SizedBox(width: 10),
-                              Text((cart.quantity ?? 1).toString()),
-                              SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () async {
-                                  vm.incrementQty();
-                                  await vm1.addToCart(
-                                    context: context,
-                                    menuId: cart.menuId ?? "",
-                                    restaurantId: cart.restaurantId ?? "",
-                                    quantity: 1,
-                                  );
-                                  await vm.getAllCart(context);
-
-                                  setState(() {});
-                                },
-                                child: const Text('+', style: TextStyle(fontSize: 20)),
-                              ),
-                            ],
-                          ),
                         ),
 
                         SizedBox(width: 10),
@@ -245,7 +294,7 @@ class _ViewCartState extends State<ViewCart> {
                     SizedBox(height: 5),
                     _row('Delivery Fee', (vm.getAllCartResponseModel.data?.deliveryFee ?? 0).toString()),
                     SizedBox(height: 5),
-                    _row('Extra Discount', (vm.getAllCartResponseModel.data?.discount ?? 0).toString()),
+                    _row('Discount', (vm.getAllCartResponseModel.data?.discount ?? 0).toString()),
                     SizedBox(height: 5),
                     _row('PlatForm Fees', (vm.getAllCartResponseModel.data?.platformFee ?? 0).toString()),
                     SizedBox(height: 5),

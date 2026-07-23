@@ -22,3 +22,7 @@ class AppFontSize {
   static const double medium = 16.0;
   static const double large = 24.0;
 }
+
+class AppImage {
+  static const String back = "assets/images/Back (2).png";
+}
