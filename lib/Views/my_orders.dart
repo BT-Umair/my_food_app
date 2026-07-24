@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
 import 'package:my_foodapp/ViewModels/MyOrdersViewModel.dart';
-import 'package:my_foodapp/Views/HomePage.dart';
 import 'package:my_foodapp/Views/Shimmer/myorders_shimmer.dart';
 import 'package:provider/provider.dart';
 
@@ -12,15 +11,6 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrderState extends State<MyOrders> {
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     context.read<CartViewModel>().getMyOrder(context, type: '', page: 1, limit: 20);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<MyOrdersViewModel>(context);
@@ -190,7 +180,7 @@ class _MyOrderState extends State<MyOrders> {
                                 Expanded(
                                   child: OutlinedButton(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(orderId: order.sId)));
+                                      // Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(orderId: order.sId)));
                                     },
 
                                     style: OutlinedButton.styleFrom(
@@ -208,16 +198,50 @@ class _MyOrderState extends State<MyOrders> {
 
                                 SizedBox(width: 10),
 
-                                OutlinedButton(
-                                  onPressed: () {},
+                                // OutlinedButton(
+                                //   onPressed: () {},
 
-                                  style: OutlinedButton.styleFrom(
-                                    fixedSize: Size.fromHeight(45),
-                                    side: BorderSide(color: Color.fromRGBO(211, 211, 211, 1), width: 1),
+                                //   style: OutlinedButton.styleFrom(
+                                //     fixedSize: Size.fromHeight(45),
+                                //     side: BorderSide(color: Color.fromRGBO(211, 211, 211, 1), width: 1),
+                                //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                //   ),
+                                PopupMenuButton<String>(
+                                  // Styles the wrapper layout to match your original OutlinedButton look
+                                  style: IconButton.styleFrom(
+                                    fixedSize: const Size(45, 45), // Made it a square to fit the icon nicely
+                                    side: const BorderSide(color: Color.fromRGBO(211, 211, 211, 1), width: 1),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   ),
 
-                                  child: Icon(Icons.more_vert),
+                                  child: Icon(Icons.more_vert, color: AppColors.primaryBlack),
+
+                                  onSelected: (String value) {
+                                    switch (value) {
+                                      case 'order':
+                                        break;
+                                      case 'share':
+                                        break;
+                                      case 'delete':
+                                        break;
+                                    }
+                                  },
+
+                                  // Builds the three menu options inside the popup list
+                                  itemBuilder: (BuildContext context) => [
+                                    const PopupMenuItem<String>(
+                                      value: 'share',
+                                      child: Row(children: [Icon(Icons.ios_share_outlined, size: 20), SizedBox(width: 10), Text('Share restaurant')]),
+                                    ),
+                                    const PopupMenuItem<String>(
+                                      value: 'order',
+                                      child: Row(children: [Icon(Icons.description_rounded, size: 20), SizedBox(width: 10), Text('Order details')]),
+                                    ),
+                                    const PopupMenuItem<String>(
+                                      value: 'delete',
+                                      child: Row(children: [Icon(Icons.delete, size: 20), SizedBox(width: 10), Text('Delete this order')]),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

@@ -12,7 +12,6 @@ class Cartservice {
 
   Future<http.Response> addtoCart(AddToCartRequestModel addRequest) async {
     final url = '${Const.BASE_URL}${Const.ADD_TO_CART}';
-    print('API Request URL: $url');
 
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.TOKEN_KEY);
@@ -20,9 +19,6 @@ class Cartservice {
     final headers = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
 
     final response = await http.post(Uri.parse(url), headers: headers, body: jsonEncode(addRequest.toJson()));
-
-    print("Response Code: ${response.statusCode}");
-    print("Response Body: ${response.body}");
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response;
@@ -35,7 +31,6 @@ class Cartservice {
 
   Future<Map<String, dynamic>?> getAllCart() async {
     final url = Const.BASE_URL + Const.GET_ALL_CART;
-    print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -45,10 +40,8 @@ class Cartservice {
     final response = await http.get(Uri.parse(url), headers: headerValue);
 
     if (response.statusCode == 200) {
-      print("addresses: ${response.body}");
       return jsonDecode(response.body);
     } else {
-      print("addresses: ${response.statusCode}");
       throw Exception("API Error: ${response.statusCode}");
     }
   }
@@ -57,7 +50,6 @@ class Cartservice {
 
   Future<Map<String, dynamic>?> getAllActiveCoupon() async {
     final url = Const.BASE_URL + Const.GET_ALL_ACTIVE_COUPON;
-    print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -67,10 +59,8 @@ class Cartservice {
     final response = await http.get(Uri.parse(url), headers: headerValue);
 
     if (response.statusCode == 200) {
-      print("Success: ${response.body}");
       return jsonDecode(response.body);
     } else {
-      print("Error: ${response.statusCode}");
       throw Exception("API Error: ${response.statusCode}");
     }
   }
@@ -80,21 +70,14 @@ class Cartservice {
   Future<Map<String, dynamic>?> removeCart(String id) async {
     final url = Uri.parse(Const.BASE_URL + Const.REMOVE_CART);
 
-    print("API URL: $url");
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
-    print("API Token: $token");
 
     final headerValue = {'Content-Type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer $token'};
 
     final bodyValue = jsonEncode({'cart_item_id': id});
-    print("API Body sent: $bodyValue");
 
     final response = await http.post(url, headers: headerValue, body: bodyValue);
-
-    print("API Status Code: ${response.statusCode}");
-    print("API Response Body: ${response.body}");
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -117,9 +100,6 @@ class Cartservice {
 
     final response = await http.put(url, headers: headerValue, body: bodyValue);
 
-    print("API Update Status Code: ${response.statusCode}");
-    print("API Update Response Body: ${response.body}");
-
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -141,9 +121,6 @@ class Cartservice {
 
     final response = await http.post(url, headers: headerValue, body: bodyValue);
 
-    print("API Update Status Code: ${response.statusCode}");
-    print("API Update Response Body: ${response.body}");
-
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -156,21 +133,14 @@ class Cartservice {
   Future<Map<String, dynamic>?> removeCoupon(String code) async {
     final url = Uri.parse(Const.BASE_URL + Const.REMOVE_COUPON_FROM_CART);
 
-    print("API URL: $url");
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
-    print("API Token: $token");
 
     final headerValue = {'Content-Type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer $token'};
 
     final bodyValue = jsonEncode({'code': code});
-    print("API Remove Body sent: $bodyValue");
 
     final response = await http.post(url, headers: headerValue, body: bodyValue);
-
-    print("API Status Code: ${response.statusCode}");
-    print("API Response Body: ${response.body}");
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -183,7 +153,6 @@ class Cartservice {
 
   Future<PlaceOrderResponseModel> placeOrder(PlaceOrderRequestModel requestModel) async {
     final url = Const.BASE_URL + Const.PLACE_ORDER;
-    print('Request URL: $url, Data: ${jsonEncode(requestModel.toJson())}');
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -191,9 +160,6 @@ class Cartservice {
     final headers = {'Content-Type': 'application/json;charset=UTF-8', 'Authorization': 'Bearer $token'};
 
     final response = await http.post(Uri.parse(url), headers: headers, body: jsonEncode(requestModel.toJson()));
-
-    print("Response Status: ${response.statusCode}");
-    print("Response Body: ${response.body}");
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> jsonMap = jsonDecode(response.body);
@@ -207,7 +173,6 @@ class Cartservice {
 
   Future<Map<String, dynamic>?> getMyOrder({String? type, int? page, int? limit}) async {
     final url = Const.BASE_URL + Const.GET_MY_ORDER + "?type=$type&page=$page&limit=$limit";
-    print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -217,10 +182,8 @@ class Cartservice {
     final response = await http.get(Uri.parse(url), headers: headerValue);
 
     if (response.statusCode == 200) {
-      print("order: ${response.body}");
       return jsonDecode(response.body);
     } else {
-      print("order: ${response.statusCode}");
       throw Exception("API Error: ${response.statusCode}");
     }
   }

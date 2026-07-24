@@ -9,7 +9,6 @@ class Categoryservice {
 
   Future<Map<String, dynamic>?> getAllCategory() async {
     final url = Const.BASE_URL + Const.GET_ALL_CATEGORY;
-    print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -19,10 +18,8 @@ class Categoryservice {
     final response = await http.get(Uri.parse(url), headers: headerValue);
 
     if (response.statusCode == 200) {
-      print("catogary: ${response.body}");
       return jsonDecode(response.body);
     } else {
-      print("dgdgdgdgh: ${response.statusCode}");
       throw Exception("API Error: ${response.statusCode}");
     }
   }
@@ -31,7 +28,6 @@ class Categoryservice {
 
   Future<Map<String, dynamic>?> getAllSubCategory() async {
     final url = Const.BASE_URL + Const.GET_ALL_SUBCATEGORY;
-    print(url);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString(Const.TOKEN_KEY);
@@ -41,10 +37,8 @@ class Categoryservice {
     final response = await http.get(Uri.parse(url), headers: headerValue);
 
     if (response.statusCode == 200) {
-      print("getallsubcategory: ${response.body}");
       return jsonDecode(response.body);
     } else {
-      print("dgdgdgdgh: ${response.statusCode}");
       throw Exception("API Error: ${response.statusCode}");
     }
   }

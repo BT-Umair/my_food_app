@@ -6,7 +6,7 @@ class Const {
   static final EMAIL = "email";
 
   // API URL.
-  static final BASE_URL = "http://192.168.0.160:8008/api/";
+  static final BASE_URL = "http://192.168.0.160:8000/api/";
 
   static final SEND_OTP = "v1/sendOtp";
   static final VERIFY_OTP = "v1/verifyOtp";

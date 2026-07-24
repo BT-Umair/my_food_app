@@ -134,7 +134,7 @@ class _SavedBymeState extends State<SavedByme> {
                                       ),
                                     ),
 
-                                    Positioned(top: 0, right: 0, child: Image.asset('assets/images/save.png', width: 50)),
+                                    Positioned(top: 0, right: 0, child: Image.asset('assets/images/Vector 48.png', width: 50)),
                                   ],
                                 ),
 

@@ -113,8 +113,17 @@ class HomeViewModel extends ChangeNotifier {
 
   // SavedRestaurant API.
 
+  // 1. Yeh list har saved restaurant ki ID ko yaad rakhegi
+  List<String> savedRestaurantIds = [];
+
   Future<bool> toggleSaveRestaurant(BuildContext context, String restaurantId) async {
     isLoading = true;
+    // 2. Agar list mein pehle se ID hai toh hatao (Unsave), nahi hai toh daalo (Save)
+    if (savedRestaurantIds.contains(restaurantId)) {
+      savedRestaurantIds.remove(restaurantId);
+    } else {
+      savedRestaurantIds.add(restaurantId);
+    }
     notifyListeners();
 
     try {

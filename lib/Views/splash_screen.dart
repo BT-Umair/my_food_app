@@ -38,7 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 curve: Curves.elasticOut,
                 child: Stack(
                   alignment: Alignment.center,
-                  children: [Image.asset('assets/images/Pattern.png'), Image.asset('assets/images/splash.png')],
+                  children: [
+                    Image.asset('assets/images/Pattern.png'),
+                    Image.asset('assets/images/splash.png', filterQuality: FilterQuality.high, fit: BoxFit.contain),
+                  ],
                 ),
               ),
             ),

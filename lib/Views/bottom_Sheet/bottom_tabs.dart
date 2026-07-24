@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
+import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/Views/ViewCart/view_cart.dart';
 import 'package:my_foodapp/Views/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class BottomTabs extends StatelessWidget {
   const BottomTabs({super.key});
@@ -97,9 +99,25 @@ class BottomTabs extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30.0),
                 color: AppColors.primaryWhite,
               ),
-
               padding: EdgeInsets.all(15),
-              child: Image.asset('assets/images/Bag.png'),
+              // Selector hume CartViewModel ke variable se connect karega
+              child: Selector<CartViewModel, int>(
+                // 1. Yeh line automatic aapke model ke andar ke items ki total ginti (length) nikalege
+                selector: (_, cartVM) => cartVM.getAllCartResponseModel.data?.items?.length ?? 0,
+                builder: (context, cartCount, child) {
+                  return Badge(
+                    backgroundColor: Colors.red, // Counting ke peeche laal rang ka gola
+                    // 2. Agar cart khali (0) hai to laal gola nahi dikhega, 0 se bada hone par hi dikhega
+                    isLabelVisible: cartCount > 0,
+
+                    label: Text(
+                      '$cartCount',
+                      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+                    child: Image.asset('assets/images/Bag.png'),
+                  );
+                },
+              ),
             ),
           ),
         ],

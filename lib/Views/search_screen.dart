@@ -7,7 +7,8 @@ import 'package:my_foodapp/Views/search_type.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  final String? itemData;
+  const SearchScreen({super.key, this.itemData});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -323,25 +324,23 @@ class _SearchScreenState extends State<SearchScreen> {
                                             style: TextStyle(fontSize: 16, fontWeight: AppFontWeights.medium, color: AppColors.darkCharcoal),
                                           ),
                                           Spacer(),
-                                          InkWell(
-                                            onTap: () {
-                                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomizeSheet(itemData: itemData)));
+                                          OutlinedButton(
+                                            onPressed: () {
+                                              // showModalBottomSheet(
+                                              //   context: context,
+                                              //   isScrollControlled: true,
+                                              //   backgroundColor: Colors.transparent,
+                                              //   builder: (context) => CustomizeSheet(itemData: itemData),
+                                              // );
                                             },
-                                            child: OutlinedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                                padding: EdgeInsets.symmetric(vertical: 10),
-                                              ),
+                                            style: OutlinedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                              padding: EdgeInsets.symmetric(vertical: 10),
+                                            ),
 
-                                              child: Text(
-                                                "ADD",
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: AppFontWeights.large,
-                                                  color: Color.fromRGBO(84, 163, 18, 1),
-                                                ),
-                                              ),
+                                            child: Text(
+                                              "ADD",
+                                              style: TextStyle(fontSize: 14, fontWeight: AppFontWeights.large, color: Color.fromRGBO(84, 163, 18, 1)),
                                             ),
                                           ),
                                         ],

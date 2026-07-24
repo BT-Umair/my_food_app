@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_foodapp/Utils/themes.dart';
+import 'package:my_foodapp/ViewModels/CartViewModel.dart';
 import 'package:my_foodapp/ViewModels/HomeViewModel.dart';
 import 'package:my_foodapp/ViewModels/MyAccountViewModel.dart';
 import 'package:my_foodapp/ViewModels/ProfileViewModel.dart';
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         context.read<MyAccountViewModel>().getProfile(context);
         context.read<HomeViewModel>().getUserData();
         context.read<ProfileViewModel>().getUserData();
+        context.read<CartViewModel>().getAllCart(context);
       }
     });
 
@@ -434,7 +436,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     onTap: () async {
                                                       await context.read<HomeViewModel>().toggleSaveRestaurant(context, restaurant.sId ?? "");
                                                     },
-                                                    child: Image.asset('assets/images/save.png', width: 50),
+                                                    child: Image.asset(
+                                                      context.watch<HomeViewModel>().savedRestaurantIds.contains(restaurant.sId)
+                                                          ? 'assets/images/Vector 48.png'
+                                                          : 'assets/images/save.png',
+                                                      width: 50,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
