@@ -26,7 +26,7 @@ class _MyAccountState extends State<MyAccount> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text("My Account"), centerTitle: true),
+      appBar: AppBar(backgroundColor: AppColors.primaryWhite, title: Text("My Account"), centerTitle: true),
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -52,7 +52,15 @@ class _MyAccountState extends State<MyAccount> {
               controller: vm.userNameController,
               decoration: InputDecoration(
                 hintText: "User Name",
-                suffixText: "Change",
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    vm.userNameController.clear();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text("Change", style: TextStyle(color: Colors.blue)),
+                  ),
+                ),
                 errorText: vm.errorUserName,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
@@ -83,7 +91,15 @@ class _MyAccountState extends State<MyAccount> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                      suffixText: 'Change',
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          vm.phoneController.clear();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text("Change", style: TextStyle(color: Colors.blue)),
+                        ),
+                      ),
                       errorText: vm.errorPhone,
                       suffixStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(94, 173, 29, 1)),
                       hintText: 'Phone Number',
